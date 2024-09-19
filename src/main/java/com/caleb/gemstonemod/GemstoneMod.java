@@ -53,6 +53,7 @@ public class GemstoneMod {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.AMBERITE);
             event.accept(ModItems.RAW_AMBERITE);
+            event.accept(ModItems.SAPHIRITE);
         }
     }
 

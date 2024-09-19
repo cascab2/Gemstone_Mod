@@ -15,6 +15,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RAW_AMBERITE = ITEMS.register("raw_amberite",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SAPHIRITE = ITEMS.register("saphirite",
+            () -> new Item(new Item.Properties()));
+
 
 
     public static void register(IEventBus eventBus) {
