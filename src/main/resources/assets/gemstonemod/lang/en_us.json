@@ -1,5 +1,11 @@
 {
   "item.gemstonemod.amberite": "Amberite Gem",
   "item.gemstonemod.raw_amberite": "Raw Amberite",
-  "item.gemstonemod.saphirite": "Saphirite Gem"
+  "item.gemstonemod.saphirite": "Saphirite Gem",
+
+  "block.gemstonemod.amberite_block": "Block of Amberite",
+  "block.gemstonemod.amberite_ore": "Amberite Ore",
+  "block.gemstonemod.deepslate_amberite_ore": "Deepslate Amberite Ore",
+  "block.gemstonemod.deepslate_saphirite_ore": "Deepslate Saphirite Ore",
+  "block.gemstonemod.saphirite_ore": "Saphirite Ore"
 }

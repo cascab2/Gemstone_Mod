@@ -1,5 +1,6 @@
 package com.caleb.gemstonemod;
 
+import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -37,6 +38,7 @@ public class GemstoneMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -55,8 +57,20 @@ public class GemstoneMod {
             event.accept(ModItems.RAW_AMBERITE);
             event.accept(ModItems.SAPHIRITE);
         }
-    }
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.AMBERITE_BLOCK);
 
+        }
+        if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(ModBlocks.AMBERITE_ORE);
+            event.accept(ModBlocks.DEEPSLATE_AMBERITE_ORE);
+            event.accept(ModBlocks.SAPHIRITE_ORE);
+            event.accept(ModBlocks.DEEPSLATE_SAPHIRITE_ORE);
+        }
+
+
+
+    }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
