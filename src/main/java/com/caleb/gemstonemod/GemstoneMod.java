@@ -56,9 +56,11 @@ public class GemstoneMod {
             event.accept(ModItems.AMBERITE);
             event.accept(ModItems.RAW_AMBERITE);
             event.accept(ModItems.SAPHIRITE);
+            event.accept(ModItems.RAW_SAPHIRITE);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);
+            event.accept(ModBlocks.SAPHIRITE_BLOCK);
 
         }
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gemstonemod:amberite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "gemstonemod:amberite"
+  }
+}

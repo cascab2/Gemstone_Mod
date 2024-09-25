@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "gemstonemod:amberite_block",
+    "gemstonemod:amberite_ore",
+    "gemstonemod:deepslate_amberite_ore",
+    "gemstonemod:saphirite_block",
+    "gemstonemod:saphirite_ore",
+    "gemstonemod:deepslate_saphirite_ore"
+  ]
+}

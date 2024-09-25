@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "amberite",
+  "ingredient": {
+    "item": "gemstonemod:raw_amberite"
+  },
+  "result": {
+    "id": "gemstonemod:amberite"
+  }
+}
