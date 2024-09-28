@@ -20,17 +20,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.AMBERITE_BLOCK.get());
-        dropSelf(ModBlocks.SAPHIRITE_BLOCK.get());
 
-        this.add(ModBlocks.AMBERITE_ORE.get(),
-                block -> createOreDrop(ModBlocks.DEEPSLATE_AMBERITE_ORE.get(), ModItems.RAW_AMBERITE.get()));
-        this.add(ModBlocks.DEEPSLATE_AMBERITE_ORE.get(),
-                block -> createOreDrop(ModBlocks.DEEPSLATE_AMBERITE_ORE.get(), ModItems.RAW_AMBERITE.get()));
-        this.add(ModBlocks.SAPHIRITE_ORE.get(),
-                block -> createOreDrop(ModBlocks.SAPHIRITE_ORE.get(), ModItems.RAW_SAPHIRITE.get()));
-        this.add(ModBlocks.DEEPSLATE_SAPHIRITE_ORE.get(),
-                block -> createOreDrop(ModBlocks.DEEPSLATE_SAPHIRITE_ORE.get(), ModItems.RAW_SAPHIRITE.get()));
     }
 
     @Override
