@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemstonemod:saphirite"
+    },
+    "B": {
+      "item": "gemstonemod:deepslate_saphirite_ore"
+    },
+    "C": {
+      "item": "gemstonemod:saphirite_block"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:saphirite_catalyst"
+  }
+}

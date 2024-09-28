@@ -1,7 +1,9 @@
 package com.caleb.gemstonemod;
 
 import com.caleb.gemstonemod.block.ModBlocks;
+import com.caleb.gemstonemod.item.ModFoodProperties;
 import com.caleb.gemstonemod.item.ModItems;
+import com.caleb.gemstonemod.item.custom.AmberiteCatalystItem;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -68,6 +70,14 @@ public class GemstoneMod {
             event.accept(ModBlocks.DEEPSLATE_AMBERITE_ORE);
             event.accept(ModBlocks.SAPHIRITE_ORE);
             event.accept(ModBlocks.DEEPSLATE_SAPHIRITE_ORE);
+        }
+        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(ModItems.AMBERITE_CATALYST);
+            event.accept(ModItems.SAPHIRITE_CATALYST);
+        }
+        if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(ModItems.AMBERITE_APPLE);
+            event.accept(ModItems.SAPHIRITE_APPLE);
         }
 
 

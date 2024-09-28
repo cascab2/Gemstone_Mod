@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemstonemod:amberite"
+    },
+    "B": {
+      "item": "gemstonemod:amberite_ore"
+    },
+    "C": {
+      "item": "gemstonemod:amberite_block"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:amberite_catalyst"
+  }
+}

@@ -1,6 +1,8 @@
 package com.caleb.gemstonemod.item;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.item.custom.AmberiteCatalystItem;
+import com.caleb.gemstonemod.item.custom.SaphiriteCatalystItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,7 +22,14 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RAW_SAPHIRITE = ITEMS.register("raw_saphirite",
             () -> new Item(new Item.Properties()));
-
+    public static final RegistryObject<Item> AMBERITE_CATALYST = ITEMS.register("amberite_catalyst",
+            () -> new AmberiteCatalystItem(new Item.Properties().durability(16)));
+    public static final RegistryObject<Item> SAPHIRITE_CATALYST = ITEMS.register("saphirite_catalyst",
+            () -> new SaphiriteCatalystItem(new Item.Properties().durability(16)));
+    public static final RegistryObject<Item> AMBERITE_APPLE = ITEMS.register("amberite_apple",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.AMBERITE_APPLE)));
+    public static final RegistryObject<Item> SAPHIRITE_APPLE = ITEMS.register("saphirite_apple",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.SAPHIRITE_APPLE)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

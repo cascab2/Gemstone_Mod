@@ -3,6 +3,10 @@
   "item.gemstonemod.raw_amberite": "Raw Amberite",
   "item.gemstonemod.saphirite": "Saphirite Gem",
   "item.gemstonemod.raw_saphirite": "Raw Saphirite",
+  "item.gemstonemod.amberite_catalyst": "Amberite Catalyst",
+  "item.gemstonemod.saphirite_catalyst": "Saphirite Catalyst",
+  "item.gemstonemod.amberite_apple": "Amberite Apple",
+  "item.gemstonemod.saphirite_apple": "Saphirite Apple",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",

@@ -11,18 +11,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.Map;
 
-public class AmberiteCatalystItem extends Item {
-    private static final Map<Block, Block> AMBERITE_CATALYST_MAP =
+public class SaphiriteCatalystItem extends Item {
+    private static final Map<Block, Block> SAPHIRITE_CATALYST_MAP =
             Map.of(
-                    ModBlocks.AMBERITE_ORE.get(), ModBlocks.AMBERITE_BLOCK.get(),
-                    ModBlocks.DEEPSLATE_AMBERITE_ORE.get(), ModBlocks.AMBERITE_BLOCK.get()
+                    ModBlocks.SAPHIRITE_ORE.get(), ModBlocks.SAPHIRITE_BLOCK.get(),
+                    ModBlocks.DEEPSLATE_SAPHIRITE_ORE.get(), ModBlocks.SAPHIRITE_BLOCK.get()
             );
 
-    public AmberiteCatalystItem(Properties pProperties) {
+    public SaphiriteCatalystItem(Properties pProperties) {
         super(pProperties);
     }
 
@@ -31,9 +30,9 @@ public class AmberiteCatalystItem extends Item {
         Level level = pContext.getLevel();
         Block clickedBlock = level.getBlockState(pContext.getClickedPos()).getBlock();
 
-        if(AMBERITE_CATALYST_MAP.containsKey(clickedBlock)) {
+        if(SAPHIRITE_CATALYST_MAP.containsKey(clickedBlock)) {
             if(!level.isClientSide()) {
-                level.setBlockAndUpdate(pContext.getClickedPos(), AMBERITE_CATALYST_MAP.get(clickedBlock).defaultBlockState());
+                level.setBlockAndUpdate(pContext.getClickedPos(), SAPHIRITE_CATALYST_MAP.get(clickedBlock).defaultBlockState());
 
                 pContext.getItemInHand().hurtAndBreak(1, ((ServerLevel) level), ((ServerPlayer) pContext.getPlayer()),
                         item -> pContext.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND));
