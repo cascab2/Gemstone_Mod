@@ -1,4 +1,34 @@
 package com.caleb.gemstonemod.datagen;
 
-public class ModBlockTagProvider {
+import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.block.ModBlocks;
+import com.caleb.gemstonemod.util.ModTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.CompletableFuture;
+
+public class ModBlockTagProvider extends BlockTagsProvider {
+    public ModBlockTagProvider(PackOutput output,
+                               CompletableFuture<HolderLookup.Provider> lookupProvider,
+                               @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, GemstoneMod.MOD_ID, existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider pProvider) {
+        tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        tag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        tag(ModTags.Blocks.NEEDS_MOD_TOOL)
+                .add(ModBlocks.AMBERITE_BLOCK.get())
+                .add(Blocks.OBSIDIAN)
+                .addTags(BlockTags.NEEDS_DIAMOND_TOOL);
+
+    }
 }

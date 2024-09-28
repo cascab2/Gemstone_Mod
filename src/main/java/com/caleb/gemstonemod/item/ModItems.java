@@ -4,6 +4,8 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.custom.AmberiteCatalystItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteCatalystItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,6 +32,12 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.AMBERITE_APPLE)));
     public static final RegistryObject<Item> SAPHIRITE_APPLE = ITEMS.register("saphirite_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.SAPHIRITE_APPLE)));
+    public static final RegistryObject<Item> AMBERITE_SWORD = ITEMS.register("amberite_sword",
+            () -> new SwordItem(ModToolTiers.AMBERITE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 3, -2.4f))));
+    public static final RegistryObject<Item> AMBERITE_PICKAXE = ITEMS.register("amberite_pickaxe",
+            () -> new PickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 1, -2.8f))));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

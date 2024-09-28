@@ -74,10 +74,14 @@ public class GemstoneMod {
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.AMBERITE_CATALYST);
             event.accept(ModItems.SAPHIRITE_CATALYST);
+            event.accept(ModItems.AMBERITE_PICKAXE);
         }
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.AMBERITE_APPLE);
             event.accept(ModItems.SAPHIRITE_APPLE);
+        }
+        if(event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ModItems.AMBERITE_SWORD);
         }
 
 
