@@ -1,0 +1,7 @@
+// 1.21	2024-09-27T23:58:35.6222326	Loot Tables
+7f49d12baefc953a9499b4705212259427aface8 data/gemstonemod/loot_table/blocks/amberite_block.json
+65946a507b3c9d0eb802a9dad4ebc73d571b97ae data/gemstonemod/loot_table/blocks/amberite_ore.json
+e1221dbb51a5ad90528df7e9edb81db3de3c8caa data/gemstonemod/loot_table/blocks/deepslate_amberite_ore.json
+5b95b07abe8c3d31c309fd861ba0840bb87c4ccb data/gemstonemod/loot_table/blocks/deepslate_saphirite_ore.json
+54399f5eaff3a5754689a1e4ddfd9d24d09dfe06 data/gemstonemod/loot_table/blocks/saphirite_block.json
+657cd95762b73ceea703a726b686dda7293f797e data/gemstonemod/loot_table/blocks/saphirite_ore.json
