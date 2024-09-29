@@ -13,9 +13,9 @@
     }
   },
   "pattern": [
-    "ABA",
-    "BCB",
-    "ABA"
+    "CBC",
+    "BAB",
+    "CBC"
   ],
   "result": {
     "count": 1,

@@ -1,0 +1,4 @@
+// 1.21	2024-09-28T17:36:34.2762957	Registries
+b0660dd39f8a71cea648b131c69e7758cdfa4c8d data/gemstonemod/forge/biome_modifier/add_amberite_ore.json
+0c185fc3cf032e8e7843701716725dbc86643395 data/gemstonemod/worldgen/configured_feature/amberite_ore.json
+f11130c2f1922cb3577df15914ed8285e39796fc data/gemstonemod/worldgen/placed_feature/amberite_ore_placed.json
