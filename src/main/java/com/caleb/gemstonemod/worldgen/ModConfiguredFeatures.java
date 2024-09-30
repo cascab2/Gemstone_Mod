@@ -20,6 +20,7 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_AMBERITE_ORE_KEY = registerKey("amberite_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SAPHIRITE_ORE_KEY = registerKey("saphirite_ore");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -28,9 +29,12 @@ public class ModConfiguredFeatures {
         List<OreConfiguration.TargetBlockState> amberiteOres = List.of(OreConfiguration.target(stoneReplaceable,
                 ModBlocks.AMBERITE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceable, ModBlocks.DEEPSLATE_AMBERITE_ORE.get().defaultBlockState()));
+        List<OreConfiguration.TargetBlockState> saphiriteOres = List.of(OreConfiguration.target(stoneReplaceable,
+                        ModBlocks.SAPHIRITE_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceable, ModBlocks.DEEPSLATE_SAPHIRITE_ORE.get().defaultBlockState()));
 
-        register(context, OVERWORLD_AMBERITE_ORE_KEY, Feature.ORE, new OreConfiguration(amberiteOres, 5));
-
+        register(context, OVERWORLD_AMBERITE_ORE_KEY, Feature.ORE, new OreConfiguration(amberiteOres, 2));
+        register(context, OVERWORLD_SAPHIRITE_ORE_KEY, Feature.ORE, new OreConfiguration(saphiriteOres, 2));
     }
 
 

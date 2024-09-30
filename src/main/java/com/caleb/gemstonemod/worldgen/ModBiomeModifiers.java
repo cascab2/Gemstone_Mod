@@ -14,6 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_AMBERITE_ORE = registerKey("add_amberite_ore");
+    public static final ResourceKey<BiomeModifier> ADD_SAPHIRITE_ORE = registerKey("add_saphirite_ore");
 
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
@@ -23,6 +24,10 @@ public class ModBiomeModifiers {
         context.register(ADD_AMBERITE_ORE, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.AMBERITE_ORE_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_SAPHIRITE_ORE, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SAPHIRITE_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
     }
 
