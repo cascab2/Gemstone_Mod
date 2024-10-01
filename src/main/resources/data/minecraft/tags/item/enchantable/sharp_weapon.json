@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "gemstonemod:amberite_sword"
+    "gemstonemod:amberite_sword",
+    "gemstonemod:saphirite_sword"
   ]
 }
