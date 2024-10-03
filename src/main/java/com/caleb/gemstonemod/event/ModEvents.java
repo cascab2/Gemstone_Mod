@@ -2,10 +2,14 @@ package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -40,5 +44,8 @@ public class ModEvents {
                 HARVESTED_BLOCKS.remove(pos);
             }
         }
+    }
+    public static void onSaphiriteSwordUsage(AttackEntityEvent event) {
+        event.getTarget();
     }
 }
