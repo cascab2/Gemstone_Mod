@@ -1,16 +1,27 @@
 package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
+import com.caleb.gemstonemod.item.custom.SaphiriteSwordItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageEffects;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.effects.DamageEntity;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -45,7 +56,12 @@ public class ModEvents {
             }
         }
     }
-    public static void onSaphiriteSwordUsage(AttackEntityEvent event) {
-        event.getTarget();
+
+    public static void onSaphiriteSwordUsage (AttackEntityEvent event, Player player, LivingEntity target) {
+        target = (LivingEntity) event.getTarget();
+        if (player.getMainHandItem().getItem() instanceof SaphiriteSwordItem saphiriteSword
+                && player instanceof ServerPlayer serverPlayer) {
+            target.addEffect(new MobEffectInstance(MobEffects.POISON, 15, 2));
+        }
     }
 }

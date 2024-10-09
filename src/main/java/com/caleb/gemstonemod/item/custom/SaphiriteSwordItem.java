@@ -1,5 +1,6 @@
 package com.caleb.gemstonemod.item.custom;
 
+import com.caleb.gemstonemod.event.ModEvents;
 import com.caleb.gemstonemod.item.ModItems;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -12,10 +13,4 @@ public class SaphiriteSwordItem extends SwordItem {
         super(pTier, pProperties);
     }
 
-    public void onTargetDamaged(Player player, Entity target) {
-        if (player.getMainHandItem().getItem() instanceof SaphiriteSwordItem saphiriteSword &&
-                player instanceof ServerPlayer serverPlayer) {
-
-        }
-    }
 }
