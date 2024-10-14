@@ -4,6 +4,7 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.custom.AmberiteCatalystItem;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteCatalystItem;
+import com.caleb.gemstonemod.item.custom.SaphiriteSwordItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
@@ -40,7 +41,7 @@ public class ModItems {
             () -> new AmberitePickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 1, -2.8f))));
     public static final RegistryObject<Item> SAPHIRITE_SWORD = ITEMS.register("saphirite_sword",
-            () -> new SwordItem(ModToolTiers.AMBERITE, new Item.Properties()
+            () -> new SaphiriteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 3, -2.4f))));
 
     public static void register(IEventBus eventBus) {
