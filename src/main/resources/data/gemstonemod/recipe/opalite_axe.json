@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemstonemod:opalite_block"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " AA",
+    " BA",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:opalite_axe"
+  }
+}

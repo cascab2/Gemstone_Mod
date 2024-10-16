@@ -83,6 +83,7 @@ public class GemstoneMod {
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.AMBERITE_SWORD);
             event.accept(ModItems.SAPHIRITE_SWORD);
+            event.accept(ModItems.OPALITE_AXE);
         }
 
 
