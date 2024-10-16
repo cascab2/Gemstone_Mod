@@ -57,12 +57,4 @@ public class ModEvents {
             }
         }
     }
-    @SubscribeEvent
-    public void onSaphiriteSwordAttack(AttackEntityEvent event) {
-        if (event.getTarget() instanceof LivingEntity && event.getEntity() instanceof Player) {
-            if (event.getEntity().getMainHandItem().getItem() instanceof SaphiriteSwordItem saphiriteSwordItem) {
-                 ((LivingEntity) event.getTarget()).addEffect(new MobEffectInstance(MobEffects.POISON, 10, 2));
-            }
-        }
-    }
 }
