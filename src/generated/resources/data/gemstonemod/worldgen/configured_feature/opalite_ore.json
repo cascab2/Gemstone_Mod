@@ -6,7 +6,7 @@
     "targets": [
       {
         "state": {
-          "Name": "gemstonemod:amberite_ore"
+          "Name": "gemstonemod:opalite_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",
@@ -15,7 +15,7 @@
       },
       {
         "state": {
-          "Name": "gemstonemod:deepslate_amberite_ore"
+          "Name": "gemstonemod:deepslate_opalite_ore"
         },
         "target": {
           "predicate_type": "minecraft:tag_match",

@@ -60,6 +60,7 @@ public class GemstoneMod {
             event.accept(ModItems.SAPHIRITE);
             event.accept(ModItems.RAW_SAPHIRITE);
             event.accept(ModItems.OPALITE);
+            event.accept(ModItems.RAW_OPALITE);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);
@@ -72,6 +73,8 @@ public class GemstoneMod {
             event.accept(ModBlocks.DEEPSLATE_AMBERITE_ORE);
             event.accept(ModBlocks.SAPHIRITE_ORE);
             event.accept(ModBlocks.DEEPSLATE_SAPHIRITE_ORE);
+            event.accept(ModBlocks.OPALITE_ORE);
+            event.accept(ModBlocks.DEEPSLATE_OPALITE_ORE);
         }
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.AMBERITE_CATALYST);

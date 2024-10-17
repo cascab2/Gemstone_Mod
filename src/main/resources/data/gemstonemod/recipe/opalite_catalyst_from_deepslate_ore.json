@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemstonemod:opalite"
+    },
+    "B": {
+      "item": "gemstonemod:deepslate_opalite_ore"
+    },
+    "C": {
+      "item": "gemstonemod:opalite_block"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:opalite_catalyst"
+  }
+}
