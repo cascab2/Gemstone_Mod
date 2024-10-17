@@ -44,6 +44,8 @@ public class ModItems {
     public static final RegistryObject<Item> OPALITE_AXE = ITEMS.register("opalite_axe",
             () -> new OpaliteAxeItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(AxeItem.createAttributes(ModToolTiers.AMBERITE, 5, -3))));
+    public static final RegistryObject<Item> OPALITE = ITEMS.register("opalite",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

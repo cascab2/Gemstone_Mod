@@ -11,11 +11,13 @@
   "item.gemstonemod.amberite_pickaxe": "Amberite Pickaxe",
   "item.gemstonemod.saphirite_sword": "Saphirite Sword",
   "item.gemstonemod.opalite_axe": "Opalite Axe",
+  "item.gemstonemod.opalite": "Opalite Gem",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",
   "block.gemstonemod.deepslate_amberite_ore": "Deepslate Amberite Ore",
   "block.gemstonemod.deepslate_saphirite_ore": "Deepslate Saphirite Ore",
   "block.gemstonemod.saphirite_ore": "Saphirite Ore",
-  "block.gemstonemod.saphirite_block": "Saphirite Block"
+  "block.gemstonemod.saphirite_block": "Saphirite Block",
+  "block.gemstonemod.opalite_block": "Opalite Block"
 }
