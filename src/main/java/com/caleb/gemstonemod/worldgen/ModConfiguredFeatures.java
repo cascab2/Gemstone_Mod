@@ -39,9 +39,9 @@ public class ModConfiguredFeatures {
                         ModBlocks.OPALITE_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceables, ModBlocks.DEEPSLATE_OPALITE_ORE.get().defaultBlockState()));
 
-        register(context, OVERWORLD_AMBERITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldAmberiteOres, 2));
-        register(context, OVERWORLD_SAPHIRITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSaphiriteOres, 2));
-        register(context, OVERWORLD_OPALITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldOpaliteOres, 2));
+        register(context, OVERWORLD_AMBERITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldAmberiteOres, 4));
+        register(context, OVERWORLD_SAPHIRITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSaphiriteOres, 4));
+        register(context, OVERWORLD_OPALITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldOpaliteOres, 4));
     }
 
 

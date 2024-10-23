@@ -80,6 +80,7 @@ public class GemstoneMod {
             event.accept(ModItems.AMBERITE_CATALYST);
             event.accept(ModItems.SAPHIRITE_CATALYST);
             event.accept(ModItems.AMBERITE_PICKAXE);
+            event.accept(ModItems.OPALITE_CATALYST);
         }
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.AMBERITE_APPLE);
