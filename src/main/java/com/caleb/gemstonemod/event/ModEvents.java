@@ -3,26 +3,16 @@ package com.caleb.gemstonemod.event;
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
-import com.caleb.gemstonemod.item.custom.SaphiriteSwordItem;
-import net.minecraft.client.Minecraft;
+import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
+import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageEffects;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityEvent;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.effects.DamageEntity;
-import net.minecraft.world.level.pathfinder.Target;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -55,6 +45,58 @@ public class ModEvents {
                 serverPlayer.gameMode.destroyBlock(pos);
                 HARVESTED_BLOCKS.remove(pos);
             }
+        }
+    }
+    @SubscribeEvent
+    public static void onOpalitePickaxeUsage(BlockEvent.BreakEvent event) {
+        Player player = event.getPlayer();
+        ItemStack mainHandItem = player.getMainHandItem();
+
+        if(mainHandItem.getItem() instanceof OpalitePickaxeItem opalitePickaxe && player instanceof ServerPlayer serverPlayer) {
+            BlockPos initialBlockPos = event.getPos();
+            if(HARVESTED_BLOCKS.contains(initialBlockPos)) {
+                return;
+            }
+
+            for(BlockPos pos : OpalitePickaxeItem.getBlocksToBeDestroyed(4, initialBlockPos, serverPlayer)) {
+                if(pos == initialBlockPos || !opalitePickaxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
+                    continue;
+                }
+
+                HARVESTED_BLOCKS.add(pos);
+                serverPlayer.gameMode.destroyBlock(pos);
+                HARVESTED_BLOCKS.remove(pos);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void onSaphiritePickaxeUsage(BlockEvent.BreakEvent event) {
+        Player player = event.getPlayer();
+        ItemStack mainHandItem = player.getMainHandItem();
+
+        if(mainHandItem.getItem() instanceof SaphiriteAxeItem saphiritePickaxe && player instanceof ServerPlayer serverPlayer) {
+            BlockPos initialBlockPos = event.getPos();
+            if(HARVESTED_BLOCKS.contains(initialBlockPos)) {
+                return;
+            }
+
+            for(BlockPos pos : SaphiriteAxeItem.getBlocksToBeDestroyed(6, initialBlockPos, serverPlayer)) {
+                if(pos == initialBlockPos || !saphiritePickaxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
+                    continue;
+                }
+
+                HARVESTED_BLOCKS.add(pos);
+                serverPlayer.gameMode.destroyBlock(pos);
+                HARVESTED_BLOCKS.remove(pos);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void onItemHeldInOffhand (PlayerEvent.ItemPickupEvent event) {
+        Player player = event.getEntity();
+        ItemStack offHandItem = player.getOffhandItem();
+        if (offHandItem.getItem().equals(ModItems.NIGHT_VISION_ITEM.get())) {
+            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 6000, 1));
         }
     }
 }

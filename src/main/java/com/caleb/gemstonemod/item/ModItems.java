@@ -4,13 +4,11 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.custom.*;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.checkerframework.checker.regex.qual.Regex;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -40,6 +38,12 @@ public class ModItems {
     public static final RegistryObject<Item> AMBERITE_PICKAXE = ITEMS.register("amberite_pickaxe",
             () -> new AmberitePickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 1, -2.8f))));
+    public static final RegistryObject<Item> OPALITE_PICKAXE = ITEMS.register("opalite_pickaxe",
+            () -> new OpalitePickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 1, -2.8f))));
+    public static final RegistryObject<Item> SAPHIRITE_AXE = ITEMS.register("saphirite_axe",
+            () -> new SaphiriteAxeItem(ModToolTiers.AMBERITE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 4, -3))));
     public static final RegistryObject<Item> SAPHIRITE_SWORD = ITEMS.register("saphirite_sword",
             () -> new SaphiriteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 3, -2.4f))));
@@ -49,6 +53,8 @@ public class ModItems {
     public static final RegistryObject<Item> OPALITE = ITEMS.register("opalite",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RAW_OPALITE = ITEMS.register("raw_opalite",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NIGHT_VISION_ITEM = ITEMS.register("night_vision_item",
             () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {

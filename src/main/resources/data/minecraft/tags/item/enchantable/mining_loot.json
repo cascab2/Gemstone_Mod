@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "gemstonemod:amberite_pickaxe",
-    "gemstonemod:opalite_axe"
+    "gemstonemod:opalite_axe",
+    "gemstonemod:opalite_pickaxe",
+    "gemstonemod:saphirite_axe"
   ]
 }
