@@ -1,6 +1,7 @@
+
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gemstonemod:item/saphirite_axe"
+    "layer0": "gemstonemod:item/opalite_apple"
   }
 }

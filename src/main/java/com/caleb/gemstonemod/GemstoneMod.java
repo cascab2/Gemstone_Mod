@@ -85,6 +85,8 @@ public class GemstoneMod {
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.AMBERITE_APPLE);
             event.accept(ModItems.SAPHIRITE_APPLE);
+            event.accept(ModItems.OPALITE_APPLE);
+            event.accept(ModItems.DIAMOND_APPLE);
         }
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.AMBERITE_SWORD);

@@ -32,6 +32,10 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.AMBERITE_APPLE)));
     public static final RegistryObject<Item> SAPHIRITE_APPLE = ITEMS.register("saphirite_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.SAPHIRITE_APPLE)));
+    public static final RegistryObject<Item> OPALITE_APPLE = ITEMS.register("opalite_apple",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.OPALITE_APPLE)));
+    public static final RegistryObject<Item> DIAMOND_APPLE = ITEMS.register("diamond_apple",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.DIAMOND_APPLE)));
     public static final RegistryObject<Item> AMBERITE_SWORD = ITEMS.register("amberite_sword",
             () -> new SwordItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 3, -2.4f))));
