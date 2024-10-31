@@ -93,6 +93,7 @@ public class GemstoneMod {
             event.accept(ModItems.AMBERITE_SWORD);
             event.accept(ModItems.SAPHIRITE_SWORD);
             event.accept(ModItems.OPALITE_AXE);
+            event.accept(ModItems.OPALITE_SWORD);
         }
 
 

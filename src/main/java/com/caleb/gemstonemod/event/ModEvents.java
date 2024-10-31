@@ -4,13 +4,17 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
+import com.caleb.gemstonemod.item.custom.OpaliteSwordItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -97,6 +101,19 @@ public class ModEvents {
         ItemStack offHandItem = player.getOffhandItem();
         if (offHandItem.getItem().equals(ModItems.NIGHT_VISION_ITEM.get())) {
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 6000, 1));
+        }
+    }
+    @SubscribeEvent
+    public static void onOpaliteSwordNotHeld (LivingEvent.LivingTickEvent event) {
+        ItemStack mainHandItem = event.getEntity().getMainHandItem();
+        if (event.getEntity() instanceof Player) {
+            if (!(mainHandItem.getItem().equals(ModItems.OPALITE_SWORD.get()))) {
+                event.getEntity().getAttribute(Attributes.ATTACK_SPEED)
+                        .setBaseValue(4.0f);
+                event.getEntity().getAttribute(Attributes.ATTACK_DAMAGE)
+                        .setBaseValue(1.0f);
+
+            }
         }
     }
 }

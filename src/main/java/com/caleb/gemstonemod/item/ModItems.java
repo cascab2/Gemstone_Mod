@@ -61,6 +61,9 @@ public class ModItems {
     public static final RegistryObject<Item> SAPHIRITE_PICKAXE = ITEMS.register("saphirite_pickaxe",
             () -> new PickaxeItem(ModToolTiers.SAPHIRITE_PICKAXE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.SAPHIRITE_PICKAXE, 1, -2.8f))));
+    public static final RegistryObject<Item> OPALITE_SWORD = ITEMS.register("opalite_sword",
+            () -> new OpaliteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -4.0f))));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
