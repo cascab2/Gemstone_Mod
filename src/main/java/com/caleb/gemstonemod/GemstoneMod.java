@@ -1,7 +1,9 @@
 package com.caleb.gemstonemod;
 
 import com.caleb.gemstonemod.block.ModBlocks;
+import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.item.ModItems;
+import com.caleb.gemstonemod.util.ModItemProperties;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,6 +41,7 @@ public class GemstoneMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModDataComponentTypes.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -111,7 +114,7 @@ public class GemstoneMod {
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            ModItemProperties.addCustomItemProperties();
         }
     }
 }

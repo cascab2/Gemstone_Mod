@@ -19,7 +19,7 @@ public class SaphiriteSwordItem extends SwordItem {
     }
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        pTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 160, 2));
+        pTarget.addEffect(new MobEffectInstance(MobEffects.WITHER, 120, 2));
         return super.hurtEnemy(pStack, pTarget,pAttacker);
     }
 

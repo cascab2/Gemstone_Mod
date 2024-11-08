@@ -1,6 +1,7 @@
 package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
@@ -112,7 +113,7 @@ public class ModEvents {
                         .setBaseValue(4.0f);
                 event.getEntity().getAttribute(Attributes.ATTACK_DAMAGE)
                         .setBaseValue(1.0f);
-
+                event.getEntity().getMainHandItem().set(ModDataComponentTypes.COORDINATES.get(), null);
             }
         }
     }

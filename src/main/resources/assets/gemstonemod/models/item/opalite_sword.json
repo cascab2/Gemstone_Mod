@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "gemstonemod:item/opalite_sword"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "gemstonemod:overclocked": 1
+      },
+      "model": "gemstonemod:item/opalite_sword_overclocked"
+    }
+  ]
 }
