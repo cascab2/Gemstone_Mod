@@ -4,6 +4,7 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.item.ModItems;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 

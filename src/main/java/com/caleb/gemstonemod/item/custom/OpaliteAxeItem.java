@@ -14,7 +14,7 @@ public class OpaliteAxeItem extends AxeItem {
     }
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        pAttacker.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60, 1));
+        pAttacker.heal(2f);
         return super.hurtEnemy(pStack, pTarget,pAttacker);
     }
 

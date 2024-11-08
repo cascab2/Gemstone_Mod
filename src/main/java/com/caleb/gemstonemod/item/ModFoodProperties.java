@@ -12,7 +12,7 @@ public class ModFoodProperties {
             .effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,600, 1), 1.0f)
             .effect(new MobEffectInstance(MobEffects.ABSORPTION, 600, 1), 1.0f).alwaysEdible().build();
     public static final FoodProperties OPALITE_APPLE = new FoodProperties.Builder().nutrition(4).saturationModifier(0.25f)
-            .effect(new MobEffectInstance(MobEffects.INVISIBILITY,600, 1), 1.0f)
+            .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,600, 1), 1.0f)
             .effect(new MobEffectInstance(MobEffects.ABSORPTION, 600, 1), 1.0f).alwaysEdible().build();
     public static final FoodProperties DIAMOND_APPLE = new FoodProperties.Builder().nutrition(4).saturationModifier(0.25f)
             .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,2400, 2), 1.0f)

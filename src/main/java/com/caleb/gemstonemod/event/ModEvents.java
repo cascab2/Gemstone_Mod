@@ -113,7 +113,6 @@ public class ModEvents {
                         .setBaseValue(4.0f);
                 event.getEntity().getAttribute(Attributes.ATTACK_DAMAGE)
                         .setBaseValue(1.0f);
-                event.getEntity().getMainHandItem().set(ModDataComponentTypes.COORDINATES.get(), null);
             }
         }
     }
