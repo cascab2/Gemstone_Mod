@@ -19,7 +19,7 @@ public class OpaliteSwordItem extends TridentItem {
     }
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
-        pAttacker.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(pAttacker.getAttributeBaseValue(Attributes.ATTACK_SPEED) + 0.075f);
+        pAttacker.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(pAttacker.getAttributeBaseValue(Attributes.ATTACK_SPEED) + 0.1f);
         if (pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() < 13) {
             pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(pAttacker.getAttributeBaseValue(Attributes.ATTACK_DAMAGE) + 0.25f);
             pAttacker.getMainHandItem().set(ModDataComponentTypes.COORDINATES.get(), null);

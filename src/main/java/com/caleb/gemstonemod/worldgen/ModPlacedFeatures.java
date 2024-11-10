@@ -25,7 +25,7 @@ public class ModPlacedFeatures {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
         register(context, AMBERITE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_AMBERITE_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(4,
+                ModOrePlacement.commonOrePlacement(3,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(10))));
 
         register(context, SAPHIRITE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SAPHIRITE_ORE_KEY),
@@ -33,8 +33,8 @@ public class ModPlacedFeatures {
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-24))));
 
         register(context, OPALITE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_OPALITE_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(3,
-                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(0))));
+                ModOrePlacement.commonOrePlacement(4,
+                        HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(63))));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

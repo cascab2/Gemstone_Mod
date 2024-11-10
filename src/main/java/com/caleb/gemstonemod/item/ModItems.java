@@ -35,8 +35,8 @@ public class ModItems {
     public static final RegistryObject<Item> DIAMOND_APPLE = ITEMS.register("diamond_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.DIAMOND_APPLE)));
     public static final RegistryObject<Item> AMBERITE_SWORD = ITEMS.register("amberite_sword",
-            () -> new SwordItem(ModToolTiers.AMBERITE, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 3, -2.4f))));
+            () -> new AmberiteSwordItem(new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -2.4f))));
     public static final RegistryObject<Item> AMBERITE_PICKAXE = ITEMS.register("amberite_pickaxe",
             () -> new AmberitePickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 1, -2.8f))));
@@ -63,7 +63,7 @@ public class ModItems {
                     .attributes(SwordItem.createAttributes(ModToolTiers.SAPHIRITE_PICKAXE, 1, -2.8f))));
     public static final RegistryObject<Item> OPALITE_SWORD = ITEMS.register("opalite_sword",
             () -> new OpaliteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -4.0f))));
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -3.6f))));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

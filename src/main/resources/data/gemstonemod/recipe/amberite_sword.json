@@ -7,11 +7,14 @@
     },
     "B": {
       "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "gemstonemod:amberite_catalyst"
     }
   },
   "pattern": [
     " A ",
-    " A ",
+    " C ",
     " B "
   ],
   "result": {
