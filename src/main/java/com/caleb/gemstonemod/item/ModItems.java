@@ -2,8 +2,10 @@ package com.caleb.gemstonemod.item;
 
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.item.custom.*;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -35,7 +37,7 @@ public class ModItems {
     public static final RegistryObject<Item> DIAMOND_APPLE = ITEMS.register("diamond_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.DIAMOND_APPLE)));
     public static final RegistryObject<Item> AMBERITE_SWORD = ITEMS.register("amberite_sword",
-            () -> new AmberiteSwordItem(new Item.Properties()
+            () -> new AmberiteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -2.4f))));
     public static final RegistryObject<Item> AMBERITE_PICKAXE = ITEMS.register("amberite_pickaxe",
             () -> new AmberitePickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
@@ -64,6 +66,25 @@ public class ModItems {
     public static final RegistryObject<Item> OPALITE_SWORD = ITEMS.register("opalite_sword",
             () -> new OpaliteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -3.6f))));
+    public static final RegistryObject<Item> AMBERITE_AXE = ITEMS.register("amberite_axe",
+            () -> new TridentItem(new Item.Properties()
+                    .durability(3031)
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 5, -3f))
+                    .component(DataComponents.TOOL, TridentItem.createToolProperties())));
+    public static final RegistryObject<Item> GEMSTONE_HELMET = ITEMS.register("gemstone_helmet",
+            () -> new ModArmorItem(ModArmorMaterials.GEMSTONE_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(45))));
+    public static final RegistryObject<Item> GEMSTONE_CHESTPLATE = ITEMS.register("gemstone_chestplate",
+            () -> new ModArmorItem(ModArmorMaterials.GEMSTONE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(45))));
+    public static final RegistryObject<Item> GEMSTONE_LEGGINGS = ITEMS.register("gemstone_leggings",
+            () -> new ModArmorItem(ModArmorMaterials.GEMSTONE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(45))));
+    public static final RegistryObject<Item> GEMSTONE_BOOTS = ITEMS.register("gemstone_boots",
+            () -> new ModArmorItem(ModArmorMaterials.GEMSTONE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(45))));
+    public static final RegistryObject<Item> GEMSTONE_ESSENCE = ITEMS.register("gemstone_essence",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

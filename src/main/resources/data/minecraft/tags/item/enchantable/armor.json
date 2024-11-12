@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "minecraft:elytra"
+    "minecraft:elytra",
+    "gemstonemod:gemstone_helmet",
+    "gemstonemod:gemstone_chestplate",
+    "gemstonemod:gemstone_leggings",
+    "gemstonemod:gemstone_boots"
   ]
 }

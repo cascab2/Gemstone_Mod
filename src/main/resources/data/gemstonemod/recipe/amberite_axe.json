@@ -1,0 +1,25 @@
+
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemstonemod:amberite_block"
+    },
+    "B": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "gemstonemod:amberite_catalyst"
+    }
+  },
+  "pattern": [
+    " AA",
+    " CA",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:amberite_axe"
+  }
+}

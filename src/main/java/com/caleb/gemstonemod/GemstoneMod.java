@@ -62,6 +62,7 @@ public class GemstoneMod {
             event.accept(ModItems.RAW_SAPHIRITE);
             event.accept(ModItems.OPALITE);
             event.accept(ModItems.RAW_OPALITE);
+            event.accept(ModItems.GEMSTONE_ESSENCE);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);
@@ -97,6 +98,11 @@ public class GemstoneMod {
             event.accept(ModItems.SAPHIRITE_SWORD);
             event.accept(ModItems.OPALITE_AXE);
             event.accept(ModItems.OPALITE_SWORD);
+            event.accept(ModItems.AMBERITE_AXE);
+            event.accept(ModItems.GEMSTONE_HELMET);
+            event.accept(ModItems.GEMSTONE_CHESTPLATE);
+            event.accept(ModItems.GEMSTONE_LEGGINGS);
+            event.accept(ModItems.GEMSTONE_BOOTS);
         }
 
 

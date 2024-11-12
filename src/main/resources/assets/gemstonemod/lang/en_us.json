@@ -20,6 +20,12 @@
   "item.gemstonemod.diamond_apple": "Diamond Apple",
   "item.gemstonemod.saphirite_pickaxe": "Saphirite Pickaxe",
   "item.gemstonemod.opalite_sword": "Opalite Sword",
+  "item.gemstonemod.amberite_axe": "Amberite Axe",
+  "item.gemstonemod.gemstone_helmet": "Gemstone Helmet",
+  "item.gemstonemod.gemstone_chestplate": "Gemstone Chestplate",
+  "item.gemstonemod.gemstone_leggings": "Gemstone Leggings",
+  "item.gemstonemod.gemstone_boots": "Gemstone Boots",
+  "item.gemstonemod.gemstone_essence": "Gemstone Essence",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",

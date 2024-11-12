@@ -29,6 +29,12 @@
     "gemstonemod:deepslate_amberite_ore",
     "gemstonemod:amberite_catalyst",
     "gemstonemod:amberite_apple",
-    "gemstonemod:diamond_apple"
+    "gemstonemod:diamond_apple",
+    "gemstonemod:amberite_axe",
+    "gemstonemod:gemstone_helmet",
+    "gemstonemod:gemstone_chestplate",
+    "gemstonemod:gemstone_leggings",
+    "gemstonemod:gemstone_boots",
+    "gemstonemod:gemstone_essence"
   ]
 }

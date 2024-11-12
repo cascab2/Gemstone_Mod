@@ -15,9 +15,9 @@ import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 
-public class AmberiteSwordItem extends TridentItem {
+public class AmberiteSwordItem extends SwordItem {
 
-    public AmberiteSwordItem(Properties pProperties) {super(pProperties);}
+    public AmberiteSwordItem(Tier pTier, Properties pProperties) {super(pTier, pProperties);}
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         BlockPos pos = pTarget.blockPosition();

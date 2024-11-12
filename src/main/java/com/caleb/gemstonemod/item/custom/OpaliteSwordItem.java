@@ -13,9 +13,9 @@ import net.minecraft.world.item.*;
 
 import java.awt.*;
 
-public class OpaliteSwordItem extends TridentItem {
+public class OpaliteSwordItem extends SwordItem {
     public OpaliteSwordItem(Tier pTier, Properties pProperties) {
-        super(pProperties);
+        super(pTier, pProperties);
     }
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
