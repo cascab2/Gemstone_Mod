@@ -35,5 +35,7 @@
   "block.gemstonemod.saphirite_block": "Saphirite Block",
   "block.gemstonemod.opalite_block": "Opalite Block",
   "block.gemstonemod.opalite_ore": "Opalite Ore",
-  "block.gemstonemod.deepslate_opalite_ore": "Deepslate Opalite Ore"
+  "block.gemstonemod.deepslate_opalite_ore": "Deepslate Opalite Ore",
+
+  "enchantment.gemstonemod.lightning_striker": "Lightning Striker"
 }
