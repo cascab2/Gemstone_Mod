@@ -26,6 +26,7 @@
   "item.gemstonemod.gemstone_leggings": "Gemstone Leggings",
   "item.gemstonemod.gemstone_boots": "Gemstone Boots",
   "item.gemstonemod.gemstone_essence": "Gemstone Essence",
+  "item.gemstonemod.gemstone_bow": "Gemstone Bow",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",
@@ -37,5 +38,7 @@
   "block.gemstonemod.opalite_ore": "Opalite Ore",
   "block.gemstonemod.deepslate_opalite_ore": "Deepslate Opalite Ore",
 
-  "enchantment.gemstonemod.lightning_striker": "Lightning Striker"
+  "enchantment.gemstonemod.lightning_striker": "Lightning Striker",
+  "enchantment.gemstonemod.healthy": "Healthy",
+  "enchantment.gemstonemod.attack_speed": "Attack Speed"
 }

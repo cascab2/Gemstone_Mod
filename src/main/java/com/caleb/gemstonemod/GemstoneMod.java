@@ -106,6 +106,7 @@ public class GemstoneMod {
             event.accept(ModItems.GEMSTONE_CHESTPLATE);
             event.accept(ModItems.GEMSTONE_LEGGINGS);
             event.accept(ModItems.GEMSTONE_BOOTS);
+            event.accept(ModItems.GEMSTONE_BOW);
         }
 
 

@@ -85,6 +85,8 @@ public class ModItems {
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(45))));
     public static final RegistryObject<Item> GEMSTONE_ESSENCE = ITEMS.register("gemstone_essence",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GEMSTONE_BOW = ITEMS.register("gemstone_bow",
+            () -> new GemstoneBowItem(new Item.Properties().durability(500)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
