@@ -18,12 +18,7 @@ public class GemstoneBowItem extends BowItem {
     protected void shootProjectile(
             LivingEntity pShooter, Projectile pProjectile, int pIndex, float pVelocity, float pInaccuracy, float pAngle, @Nullable LivingEntity pTarget
     ) {
-        pProjectile.shootFromRotation(pShooter, pShooter.getXRot(), pShooter.getYRot() + pAngle, 0.0F, pVelocity, pInaccuracy);
-        if (pTarget != null) {
-            BlockPos pos = pTarget.blockPosition();
-            Level world = pTarget.level();
-            world.explode(pShooter, null, null, pos.getX(), pos.getY(), pos.getZ(), 1.7f, false, Level.ExplosionInteraction.MOB);
-        }
+        pProjectile.shootFromRotation(pShooter, pShooter.getXRot(), pShooter.getYRot() + pAngle, 0.0F, pVelocity * 1.425f, pInaccuracy);
     }
 
 }

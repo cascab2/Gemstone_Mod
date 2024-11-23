@@ -35,6 +35,7 @@
     "gemstonemod:gemstone_chestplate",
     "gemstonemod:gemstone_leggings",
     "gemstonemod:gemstone_boots",
-    "gemstonemod:gemstone_essence"
+    "gemstonemod:gemstone_essence",
+    "gemstonemod:gemstone_bow"
   ]
 }
