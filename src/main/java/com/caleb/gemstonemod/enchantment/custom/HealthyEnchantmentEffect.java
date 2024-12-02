@@ -21,12 +21,13 @@ public record HealthyEnchantmentEffect() implements EnchantmentEntityEffect {
         Player player = (Player) pEntity;
 
         if(pEnchantmentLevel == 1) {
-            player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 100, 0));
+            player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 100, 0, false, false, false));
         }
 
         if(pEnchantmentLevel == 2) {
-            player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 100, 1));
+            player.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 100, 1, false, false, false));
         }
+        
     }
 
     @Override
