@@ -72,6 +72,7 @@ public class GemstoneMod {
             event.accept(ModBlocks.SAPHIRITE_BLOCK);
             event.accept(ModBlocks.OPALITE_BLOCK);
             event.accept(ModBlocks.SUN);
+            event.accept(ModBlocks.MOON);
         }
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_ORE);

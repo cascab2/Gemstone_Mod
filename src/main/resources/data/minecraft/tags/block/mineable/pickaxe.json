@@ -9,6 +9,8 @@
     "gemstonemod:deepslate_saphirite_ore",
     "gemstonemod:opalite_block",
     "gemstonemod:opalite_ore",
-    "gemstonemod:deepslate_opalite_ore"
+    "gemstonemod:deepslate_opalite_ore",
+    "gemstonemod:sun",
+    "gemstonemod:moon"
   ]
 }

@@ -14,6 +14,9 @@
     "gemstonemod:gemstone_chestplate",
     "gemstonemod:gemstone_leggings",
     "gemstonemod:gemstone_boots",
-    "gemstonemod:gemstone_bow"
+    "gemstonemod:gemstone_bow",
+    "gemstonemod:amberite_catalyst",
+    "gemstonemod:saphirite_catalyst",
+    "gemstonemod:opalite_catalyst"
   ]
 }

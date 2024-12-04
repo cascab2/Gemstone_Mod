@@ -1,6 +1,7 @@
 package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantments;
 import com.caleb.gemstonemod.item.ModItems;
@@ -9,6 +10,8 @@ import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.OpaliteSwordItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
+import net.minecraft.data.worldgen.DimensionTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,6 +22,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -132,6 +137,25 @@ public class ModEvents {
         if (shooter instanceof ServerPlayer serverPlayer && item.getItem().equals(ModItems.GEMSTONE_BOW.get())) {
             world.explode(shooter, null, null, pos.getX(), pos.getY(), pos.getZ(), 1.7f, false, Level.ExplosionInteraction.MOB);
             event.getProjectile().discard();
+        }
+    }
+    public static void setTimeOfDay(Level level, long time) {
+        if (level instanceof ServerLevel serverLevel) {
+            serverLevel.setDayTime(time);
+        }
+    }
+    @SubscribeEvent
+    public static void onSunBroken(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer && event.getState().getBlock() == ModBlocks.SUN.get()) {
+            Level world = event.getPlayer().level();
+            setTimeOfDay(world, 14000);
+        }
+    }
+    @SubscribeEvent
+    public static void onMoonBroken(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer && event.getState().getBlock() == ModBlocks.MOON.get()) {
+            Level world = event.getPlayer().level();
+            setTimeOfDay(world, 1000);
         }
     }
 }
