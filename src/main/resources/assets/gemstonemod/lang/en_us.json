@@ -39,6 +39,8 @@
   "block.gemstonemod.deepslate_opalite_ore": "Deepslate Opalite Ore",
   "block.gemstonemod.sun": "Sun",
   "block.gemstonemod.moon": "Moon",
+  "block.gemstonemod.rain": "Rain",
+  "block.gemstonemod.cloud": "Cloud",
 
   "enchantment.gemstonemod.lightning_striker": "Lightning Striker",
   "enchantment.gemstonemod.healthy": "Healthy",

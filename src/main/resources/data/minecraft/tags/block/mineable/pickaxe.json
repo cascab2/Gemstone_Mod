@@ -11,6 +11,8 @@
     "gemstonemod:opalite_ore",
     "gemstonemod:deepslate_opalite_ore",
     "gemstonemod:sun",
-    "gemstonemod:moon"
+    "gemstonemod:moon",
+    "gemstonemod:rain",
+    "gemstonemod:cloud"
   ]
 }

@@ -38,6 +38,8 @@
     "gemstonemod:gemstone_essence",
     "gemstonemod:gemstone_bow",
     "gemstonemod:moon",
-    "gemstonemod:sun"
+    "gemstonemod:sun",
+    "gemstonemod:rain",
+    "gemstonemod:cloud"
   ]
 }

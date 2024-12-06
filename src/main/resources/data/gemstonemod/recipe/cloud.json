@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "gemstonemod:opalite_catalyst"
+    },
+    "B": {
+      "item": "minecraft:snow_block"
+    },
+    "C": {
+      "item": "gemstonemod:opalite_block"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:cloud"
+  }
+}

@@ -22,8 +22,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.storage.LevelData;
+import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -144,6 +147,7 @@ public class ModEvents {
             serverLevel.setDayTime(time);
         }
     }
+
     @SubscribeEvent
     public static void onSunBroken(BlockEvent.BreakEvent event) {
         if (event.getPlayer() instanceof ServerPlayer && event.getState().getBlock() == ModBlocks.SUN.get()) {
@@ -156,6 +160,20 @@ public class ModEvents {
         if (event.getPlayer() instanceof ServerPlayer && event.getState().getBlock() == ModBlocks.MOON.get()) {
             Level world = event.getPlayer().level();
             setTimeOfDay(world, 1000);
+        }
+    }
+    @SubscribeEvent
+    public static void onRainBroken(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer && event.getLevel() instanceof ServerLevel && event.getState().getBlock() == ModBlocks.RAIN.get()) {
+            ServerLevel world = ((ServerPlayer) event.getPlayer()).serverLevel();
+            world.setWeatherParameters(6000, 0, false, false);
+        }
+    }
+    @SubscribeEvent
+    public static void onCloudBroken(BlockEvent.BreakEvent event) {
+        if (event.getPlayer() instanceof ServerPlayer && event.getLevel() instanceof ServerLevel && event.getState().getBlock() == ModBlocks.CLOUD.get()) {
+            ServerLevel world = ((ServerPlayer) event.getPlayer()).serverLevel();
+            world.setWeatherParameters(0, 6000, true, false);
         }
     }
 }
