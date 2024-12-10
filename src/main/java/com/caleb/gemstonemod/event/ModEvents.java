@@ -2,36 +2,24 @@ package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.block.ModBlocks;
-import com.caleb.gemstonemod.component.ModDataComponentTypes;
-import com.caleb.gemstonemod.enchantment.ModEnchantments;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
-import com.caleb.gemstonemod.item.custom.OpaliteSwordItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.data.worldgen.DimensionTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.storage.LevelData;
-import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -89,18 +77,18 @@ public class ModEvents {
         }
     }
     @SubscribeEvent
-    public static void onSaphiritePickaxeUsage(BlockEvent.BreakEvent event) {
+    public static void onSaphiriteAxeUsage(BlockEvent.BreakEvent event) {
         Player player = event.getPlayer();
         ItemStack mainHandItem = player.getMainHandItem();
 
-        if(mainHandItem.getItem() instanceof SaphiriteAxeItem saphiritePickaxe && player instanceof ServerPlayer serverPlayer) {
+        if(mainHandItem.getItem() instanceof SaphiriteAxeItem saphiriteAxe && player instanceof ServerPlayer serverPlayer) {
             BlockPos initialBlockPos = event.getPos();
             if(HARVESTED_BLOCKS.contains(initialBlockPos)) {
                 return;
             }
 
-            for(BlockPos pos : SaphiriteAxeItem.getBlocksToBeDestroyed(6, initialBlockPos, serverPlayer)) {
-                if(pos == initialBlockPos || !saphiritePickaxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
+            for(BlockPos pos : SaphiriteAxeItem.getBlocksToBeDestroyed(100, initialBlockPos, serverPlayer)) {
+                if(pos == initialBlockPos || !saphiriteAxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
                     continue;
                 }
 
@@ -136,10 +124,13 @@ public class ModEvents {
         BlockPos pos = target.blockPosition();
         Level world = target.level();
         Entity shooter = event.getProjectile().getOwner();
-        ItemStack item = shooter.getWeaponItem();
-        if (shooter instanceof ServerPlayer serverPlayer && item.getItem().equals(ModItems.GEMSTONE_BOW.get())) {
-            world.explode(shooter, null, null, pos.getX(), pos.getY(), pos.getZ(), 1.7f, false, Level.ExplosionInteraction.MOB);
-            event.getProjectile().discard();
+
+        if (shooter instanceof ServerPlayer serverPlayer) {
+            ItemStack item = shooter.getWeaponItem();
+            if (item.getItem().equals(ModItems.GEMSTONE_BOW.get())) {
+                world.explode(shooter, null, null, pos.getX(), pos.getY(), pos.getZ(), 1.7f, false, Level.ExplosionInteraction.MOB);
+                event.getProjectile().discard();
+            }
         }
     }
     public static void setTimeOfDay(Level level, long time) {
