@@ -87,6 +87,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GEMSTONE_BOW = ITEMS.register("gemstone_bow",
             () -> new GemstoneBowItem(new Item.Properties().durability(500)));
+    public static final RegistryObject<Item> KHOLRABI = ITEMS.register("kohlrabi",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

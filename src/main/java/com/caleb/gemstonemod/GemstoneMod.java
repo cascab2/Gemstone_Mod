@@ -3,6 +3,7 @@ package com.caleb.gemstonemod;
 import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantmentEffects;
+import com.caleb.gemstonemod.entity.ModEntities;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.util.ModItemProperties;
 import com.mojang.logging.LogUtils;
@@ -47,6 +48,7 @@ public class GemstoneMod {
         ModEnchantmentEffects.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        ModEntities.register(modEventBus);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
