@@ -7,7 +7,7 @@ import net.minecraft.client.animation.KeyframeAnimations;
 
 public class TriceratopsAnimations {
 
-    public static final AnimationDefinition TRIKE_IDLE = AnimationDefinition.Builder.withLength(2f).looping()
+    public static final AnimationDefinition ANIM_TRICERATOPS_IDLE = AnimationDefinition.Builder.withLength(2f).looping()
             .addAnimation("tail",
                     new AnimationChannel(AnimationChannel.Targets.ROTATION,
                             new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
@@ -102,7 +102,8 @@ public class TriceratopsAnimations {
                                     AnimationChannel.Interpolations.LINEAR),
                             new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
                                     AnimationChannel.Interpolations.LINEAR))).build();
-    public static final AnimationDefinition TRIKE_WALKING = AnimationDefinition.Builder.withLength(4f).looping()
+
+    public static final AnimationDefinition ANIM_TRICERATOPS_WALKING = AnimationDefinition.Builder.withLength(4f).looping()
             .addAnimation("body",
                     new AnimationChannel(AnimationChannel.Targets.ROTATION,
                             new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
@@ -567,7 +568,7 @@ public class TriceratopsAnimations {
                                     AnimationChannel.Interpolations.LINEAR),
                             new Keyframe(4f, KeyframeAnimations.degreeVec(-15f, 0f, 0f),
                                     AnimationChannel.Interpolations.LINEAR))).build();
-    public static final AnimationDefinition TRIKE_ATTACK = AnimationDefinition.Builder.withLength(2f).looping()
+    public static final AnimationDefinition ANIM_TRICERATOPS_ATTACK = AnimationDefinition.Builder.withLength(2f).looping()
             .addAnimation("tail",
                     new AnimationChannel(AnimationChannel.Targets.ROTATION,
                             new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
@@ -663,4 +664,3 @@ public class TriceratopsAnimations {
                             new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 0f),
                                     AnimationChannel.Interpolations.LINEAR))).build();
 }
-

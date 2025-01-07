@@ -4,15 +4,17 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.entity.custom.TriceratopsEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.util.Mth;
 
-public class TriceratopsModel {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(GemstoneMod.MOD_ID, "triceratops"), "main");
+public class TriceratopsModel<T extends TriceratopsEntity> extends HierarchicalModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION =
+            new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(GemstoneMod.MOD_ID, "triceratops"), "main");
     private final ModelPart body;
     private final ModelPart head;
 
@@ -155,11 +157,28 @@ public class TriceratopsModel {
 
     @Override
     public void setupAnim(TriceratopsEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.applyHeadRotation(netHeadYaw, headPitch);
 
+        this.animateWalk(TriceratopsAnimations.ANIM_TRICERATOPS_WALKING, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.animate(entity.idleAnimationState, TriceratopsAnimations.ANIM_TRICERATOPS_IDLE, ageInTicks, 1f);
+    }
+
+    private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch) {
+        pNetHeadYaw = Mth.clamp(pNetHeadYaw, -30.0F, 30.0F);
+        pHeadPitch = Mth.clamp(pHeadPitch, -25.0F, 45.0F);
+
+        this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
+        this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
     }
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
         body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    }
+
+    @Override
+    public ModelPart root() {
+        return body;
     }
 }

@@ -27,6 +27,7 @@
   "item.gemstonemod.gemstone_boots": "Gemstone Boots",
   "item.gemstonemod.gemstone_essence": "Gemstone Essence",
   "item.gemstonemod.gemstone_bow": "Gemstone Bow",
+  "item.gemstonemod.triceratops_spawn_egg": "Triceratops Spawn Egg",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",
@@ -44,5 +45,7 @@
 
   "enchantment.gemstonemod.lightning_striker": "Lightning Striker",
   "enchantment.gemstonemod.healthy": "Healthy",
-  "enchantment.gemstonemod.attack_speed": "Attack Speed"
+  "enchantment.gemstonemod.attack_speed": "Attack Speed",
+
+  "entity.gemstonemod.triceratops": "Triceratops"
 }

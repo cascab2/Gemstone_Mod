@@ -1,9 +1,11 @@
 package com.caleb.gemstonemod.item;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.entity.ModEntities;
 import com.caleb.gemstonemod.item.custom.*;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -89,6 +91,8 @@ public class ModItems {
             () -> new GemstoneBowItem(new Item.Properties().durability(500)));
     public static final RegistryObject<Item> KHOLRABI = ITEMS.register("kohlrabi",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TRICERATOPS_SPAWN_EGG = ITEMS.register("triceratops_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.TRICERATOPS, 0x53524b, 0xdac741, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -2,10 +2,21 @@ package com.caleb.gemstonemod.entity.custom;
 
 import com.caleb.gemstonemod.entity.ModEntities;
 import com.caleb.gemstonemod.item.ModItems;
+import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -13,15 +24,20 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.injection.At;
-import org.w3c.dom.Attr;
 
 public class TriceratopsEntity extends Animal {
-    public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout;
+    private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(TriceratopsEntity.class, EntityDataSerializers.INT);
 
-    public TriceratopsEntity (EntityType<? extends Animal> pEntityType, Level pLevel) {
+    public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
+
+    private final ServerBossEvent bossEvent = new ServerBossEvent(Component.literal("Our Cool Triceratops"),
+            BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.NOTCHED_20);
+
+    public TriceratopsEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
 
@@ -36,7 +52,7 @@ public class TriceratopsEntity extends Animal {
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
 
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0f));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
 
@@ -52,13 +68,14 @@ public class TriceratopsEntity extends Animal {
         return pStack.is(ModItems.KHOLRABI.get());
     }
 
+    @Nullable
     @Override
-    public @Nullable AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
+    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
         return ModEntities.TRICERATOPS.get().create(pLevel);
     }
 
     private void setupAnimationStates() {
-        if(this.idleAnimationTimeout <= 0) {
+        if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 40;
             this.idleAnimationState.start(this.tickCount);
         } else {
@@ -70,7 +87,7 @@ public class TriceratopsEntity extends Animal {
     public void tick() {
         super.tick();
 
-        if(this.level().isClientSide()) {
+        if (this.level().isClientSide()) {
             this.setupAnimationStates();
         }
     }

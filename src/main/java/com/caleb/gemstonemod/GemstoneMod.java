@@ -4,9 +4,11 @@ import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantmentEffects;
 import com.caleb.gemstonemod.entity.ModEntities;
+import com.caleb.gemstonemod.entity.client.TriceratopsRenderer;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.util.ModItemProperties;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -85,6 +87,7 @@ public class GemstoneMod {
             event.accept(ModBlocks.DEEPSLATE_SAPHIRITE_ORE);
             event.accept(ModBlocks.OPALITE_ORE);
             event.accept(ModBlocks.DEEPSLATE_OPALITE_ORE);
+            event.accept(ModItems.TRICERATOPS_SPAWN_EGG);
         }
         if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.AMBERITE_CATALYST);
@@ -130,6 +133,8 @@ public class GemstoneMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             ModItemProperties.addCustomItemProperties();
+
+            EntityRenderers.register(ModEntities.TRICERATOPS.get(), TriceratopsRenderer::new);
         }
     }
 }
