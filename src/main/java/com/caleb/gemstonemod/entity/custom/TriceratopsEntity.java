@@ -28,14 +28,9 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.Nullable;
 
 public class TriceratopsEntity extends Animal {
-    private static final EntityDataAccessor<Integer> VARIANT =
-            SynchedEntityData.defineId(TriceratopsEntity.class, EntityDataSerializers.INT);
-
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
-    private final ServerBossEvent bossEvent = new ServerBossEvent(Component.literal("Our Cool Triceratops"),
-            BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.NOTCHED_20);
 
     public TriceratopsEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -58,7 +53,7 @@ public class TriceratopsEntity extends Animal {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 30D)
+                .add(Attributes.MAX_HEALTH, 50D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
                 .add(Attributes.FOLLOW_RANGE, 24D);
     }
