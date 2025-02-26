@@ -1,0 +1,14 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:bamboo_jungle",
+    "minecraft:sunflower_plains",
+    "minecraft:jungle"
+  ],
+  "spawners": {
+    "type": "gemstonemod:triceratops",
+    "maxCount": 3,
+    "minCount": 2,
+    "weight": 25
+  }
+}
