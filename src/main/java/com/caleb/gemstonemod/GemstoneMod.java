@@ -10,6 +10,7 @@ import com.caleb.gemstonemod.util.ModItemProperties;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -57,7 +58,10 @@ public class GemstoneMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            ComposterBlock.COMPOSTABLES.put(ModItems.KOHLRABI_SEEDS.get(), 0.15F);
+            ComposterBlock.COMPOSTABLES.put(ModItems.KOHLRABI.get(), 0.4F);
+        });
     }
 
     // Add the example block item to the building blocks tab
@@ -103,6 +107,8 @@ public class GemstoneMod {
             event.accept(ModItems.SAPHIRITE_APPLE);
             event.accept(ModItems.OPALITE_APPLE);
             event.accept(ModItems.DIAMOND_APPLE);
+            event.accept(ModItems.KOHLRABI);
+            event.accept(ModItems.KOHLRABI_SEEDS);
         }
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.AMBERITE_SWORD);

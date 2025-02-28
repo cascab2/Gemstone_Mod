@@ -1,6 +1,7 @@
 package com.caleb.gemstonemod.item;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.entity.ModEntities;
 import com.caleb.gemstonemod.item.custom.*;
 import net.minecraft.core.component.DataComponents;
@@ -93,6 +94,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TRICERATOPS_SPAWN_EGG = ITEMS.register("triceratops_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.TRICERATOPS, 0x53524b, 0xdac741, new Item.Properties()));
+    public static final RegistryObject<Item> KOHLRABI_SEEDS = ITEMS.register("kohlrabi_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.KOHLRABI_CROP.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

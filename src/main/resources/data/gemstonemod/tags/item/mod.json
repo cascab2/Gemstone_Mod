@@ -41,6 +41,8 @@
     "gemstonemod:sun",
     "gemstonemod:rain",
     "gemstonemod:cloud",
-    "gemstonemod:triceratops_spawn_egg"
+    "gemstonemod:triceratops_spawn_egg",
+    "gemstonemod:kohlrabi",
+    "gemstonemod:kohlrabi_seeds"
   ]
 }
