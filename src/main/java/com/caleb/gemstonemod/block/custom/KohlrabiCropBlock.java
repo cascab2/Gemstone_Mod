@@ -1,5 +1,6 @@
 package com.caleb.gemstonemod.block.custom;
 
+import com.caleb.gemstonemod.item.ModItems;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
@@ -17,7 +18,7 @@ public class KohlrabiCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return
+        return ModItems.KOHLRABI_SEEDS.get();
     }
 
     @Override
@@ -32,6 +33,6 @@ public class KohlrabiCropBlock extends CropBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(AGE);
     }
 }

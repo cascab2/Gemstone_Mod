@@ -68,7 +68,7 @@ public class ModItems {
                     .attributes(SwordItem.createAttributes(ModToolTiers.SAPHIRITE_PICKAXE, 1, -2.8f))));
     public static final RegistryObject<Item> OPALITE_SWORD = ITEMS.register("opalite_sword",
             () -> new OpaliteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -3.6f))));
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -4, -3.6f))));
     public static final RegistryObject<Item> AMBERITE_AXE = ITEMS.register("amberite_axe",
             () -> new TridentItem(new Item.Properties()
                     .durability(3031)

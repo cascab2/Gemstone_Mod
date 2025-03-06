@@ -20,11 +20,11 @@ public class OpaliteSwordItem extends SwordItem {
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         pAttacker.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(pAttacker.getAttributeBaseValue(Attributes.ATTACK_SPEED) + 0.1f);
-        if (pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() < 13) {
+        if (pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() < 15) {
             pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(pAttacker.getAttributeBaseValue(Attributes.ATTACK_DAMAGE) + 0.25f);
             pAttacker.getMainHandItem().set(ModDataComponentTypes.COORDINATES.get(), null);
         }
-        if (pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() >= 13) {
+        if (pAttacker.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() >= 15) {
             pAttacker.getMainHandItem().set(ModDataComponentTypes.COORDINATES.get(), new BlockPos( 1, 1, 1));
         }
         return super.hurtEnemy(pStack, pTarget,pAttacker);
