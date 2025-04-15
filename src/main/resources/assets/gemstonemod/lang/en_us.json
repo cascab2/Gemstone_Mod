@@ -49,6 +49,7 @@
   "enchantment.gemstonemod.lightning_striker": "Lightning Striker",
   "enchantment.gemstonemod.healthy": "Healthy",
   "enchantment.gemstonemod.attack_speed": "Attack Speed",
+  "enchantment.gemstonemod.critical": "Critical",
 
   "entity.gemstonemod.triceratops": "Triceratops"
 }

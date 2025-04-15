@@ -1,23 +1,24 @@
 {
   "anvil_cost": 2,
   "description": {
-    "translate": "enchantment.gemstonemod.attack_speed"
+    "translate": "enchantment.gemstonemod.critical"
   },
   "effects": {
-    "minecraft:tick": [
+    "minecraft:post_attack": [
       {
+        "affected": "victim",
         "effect": {
-          "type": "gemstonemod:attack_speed"
-        }
+          "type": "gemstonemod:critical"
+        },
+        "enchanted": "attacker"
       }
     ]
   },
-  "exclusive_set": "#minecraft:exclusive_set/damage",
   "max_cost": {
     "base": 25,
     "per_level_above_first": 8
   },
-  "max_level": 2,
+  "max_level": 1,
   "min_cost": {
     "base": 5,
     "per_level_above_first": 8

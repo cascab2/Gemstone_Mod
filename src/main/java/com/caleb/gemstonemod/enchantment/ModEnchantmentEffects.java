@@ -21,6 +21,8 @@ public class ModEnchantmentEffects {
             ENTITY_ENCHANTMENT_EFFECTS.register("healthy", () -> HealthyEnchantmentEffect.CODEC);
     public static final RegistryObject<MapCodec<? extends EnchantmentEntityEffect>> ATTACK_SPEED =
             ENTITY_ENCHANTMENT_EFFECTS.register("attack_speed", () -> AttackSpeedEnchantmentEffect.CODEC);
+    public static final RegistryObject<MapCodec<? extends EnchantmentEntityEffect>> CRITICAL =
+            ENTITY_ENCHANTMENT_EFFECTS.register("critical", () -> AttackSpeedEnchantmentEffect.CODEC);
 
 
     public static void register(IEventBus eventBus) {

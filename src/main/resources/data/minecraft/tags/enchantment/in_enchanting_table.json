@@ -3,6 +3,7 @@
   "values": [
     "gemstonemod:lightning_striker",
     "gemstonemod:healthy",
-    "gemstonemod:attack_speed"
+    "gemstonemod:attack_speed",
+    "gemstonemod:critical"
   ]
 }
