@@ -1,14 +1,14 @@
 {
   "anvil_cost": 2,
   "description": {
-    "translate": "enchantment.gemstonemod.critical"
+    "translate": "enchantment.gemstonemod.archaeology"
   },
   "effects": {
     "minecraft:post_attack": [
       {
         "affected": "victim",
         "effect": {
-          "type": "gemstonemod:critical"
+          "type": "gemstonemod:archaeology"
         },
         "enchanted": "attacker"
       }
@@ -23,10 +23,10 @@
     "base": 5,
     "per_level_above_first": 8
   },
-  "primary_items": "#minecraft:enchantable/sharp_weapon",
+  "primary_items": "#minecraft:enchantable/mining",
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#minecraft:enchantable/weapon",
+  "supported_items": "#minecraft:enchantable/mining",
   "weight": 5
 }

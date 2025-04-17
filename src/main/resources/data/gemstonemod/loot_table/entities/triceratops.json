@@ -38,14 +38,14 @@
         {
           "condition": "minecraft:random_chance_with_enchanted_bonus",
           "unenchanted_chance": 0,
-          "enchanted_chance": 1,
-          "enchantment": "gemstonemod:lightning_striker"
+          "enchanted_chance": 0.67,
+          "enchantment": "gemstonemod:archaeology"
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond"
+          "name": "gemstonemod:triceratops_bone"
         }
       ],
       "rolls": 1.0

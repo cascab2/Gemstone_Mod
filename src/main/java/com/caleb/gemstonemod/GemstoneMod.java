@@ -74,6 +74,7 @@ public class GemstoneMod {
             event.accept(ModItems.OPALITE);
             event.accept(ModItems.RAW_OPALITE);
             event.accept(ModItems.GEMSTONE_ESSENCE);
+            event.accept(ModItems.TRICERATOPS_BONE);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);

@@ -8,15 +8,12 @@ import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -171,12 +168,6 @@ public class ModEvents {
         if (event.getPlayer() instanceof ServerPlayer && event.getLevel() instanceof ServerLevel && event.getState().getBlock() == ModBlocks.CLOUD.get()) {
             ServerLevel world = ((ServerPlayer) event.getPlayer()).serverLevel();
             world.setWeatherParameters(0, 6000, true, false);
-        }
-    }
-    @SubscribeEvent
-    public static void onCritical(CriticalHitEvent event) {
-        if (event.getEntity().getMainHandItem().getEnchantments().equals(ModEnchantments.CRITICAL)) {
-            event.getTarget().hurt(event.getEntity().getLastDamageSource(), 3);
         }
     }
 }

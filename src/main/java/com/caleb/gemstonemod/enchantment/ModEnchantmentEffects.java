@@ -1,6 +1,7 @@
 package com.caleb.gemstonemod.enchantment;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.caleb.gemstonemod.enchantment.custom.ArchaeologyEnchantmentEffect;
 import com.caleb.gemstonemod.enchantment.custom.AttackSpeedEnchantmentEffect;
 import com.caleb.gemstonemod.enchantment.custom.HealthyEnchantmentEffect;
 import com.caleb.gemstonemod.enchantment.custom.LightningStrikerEnchantmentEffect;
@@ -21,8 +22,8 @@ public class ModEnchantmentEffects {
             ENTITY_ENCHANTMENT_EFFECTS.register("healthy", () -> HealthyEnchantmentEffect.CODEC);
     public static final RegistryObject<MapCodec<? extends EnchantmentEntityEffect>> ATTACK_SPEED =
             ENTITY_ENCHANTMENT_EFFECTS.register("attack_speed", () -> AttackSpeedEnchantmentEffect.CODEC);
-    public static final RegistryObject<MapCodec<? extends EnchantmentEntityEffect>> CRITICAL =
-            ENTITY_ENCHANTMENT_EFFECTS.register("critical", () -> AttackSpeedEnchantmentEffect.CODEC);
+    public static final RegistryObject<MapCodec<? extends EnchantmentEntityEffect>> ARCHAEOLOGY =
+            ENTITY_ENCHANTMENT_EFFECTS.register("archaeology", () -> ArchaeologyEnchantmentEffect.CODEC);
 
 
     public static void register(IEventBus eventBus) {

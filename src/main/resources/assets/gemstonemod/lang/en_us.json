@@ -30,6 +30,7 @@
   "item.gemstonemod.triceratops_spawn_egg": "Triceratops Spawn Egg",
   "item.gemstonemod.kohlrabi": "Kohlrabi",
   "item.gemstonemod.kohlrabi_seeds": "Kohlrabi Seeds",
+  "item.gemstonemod.triceratops_bone": "Triceratops Bone",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",
@@ -49,7 +50,7 @@
   "enchantment.gemstonemod.lightning_striker": "Lightning Striker",
   "enchantment.gemstonemod.healthy": "Healthy",
   "enchantment.gemstonemod.attack_speed": "Attack Speed",
-  "enchantment.gemstonemod.critical": "Critical",
+  "enchantment.gemstonemod.archaeology": "Archaeology",
 
   "entity.gemstonemod.triceratops": "Triceratops"
 }
