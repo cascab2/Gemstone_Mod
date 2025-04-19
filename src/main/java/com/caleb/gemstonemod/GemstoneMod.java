@@ -122,6 +122,7 @@ public class GemstoneMod {
             event.accept(ModItems.GEMSTONE_LEGGINGS);
             event.accept(ModItems.GEMSTONE_BOOTS);
             event.accept(ModItems.GEMSTONE_BOW);
+            event.accept(ModItems.GEMSTONE_WINGS);
         }
 
 

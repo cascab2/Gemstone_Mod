@@ -13,11 +13,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
@@ -141,7 +143,6 @@ public class ModEvents {
             serverLevel.setDayTime(time);
         }
     }
-
     @SubscribeEvent
     public static void onSunBroken(BlockEvent.BreakEvent event) {
         if (event.getPlayer() instanceof ServerPlayer && event.getState().getBlock() == ModBlocks.SUN.get()) {
@@ -168,6 +169,14 @@ public class ModEvents {
         if (event.getPlayer() instanceof ServerPlayer && event.getLevel() instanceof ServerLevel && event.getState().getBlock() == ModBlocks.CLOUD.get()) {
             ServerLevel world = ((ServerPlayer) event.getPlayer()).serverLevel();
             world.setWeatherParameters(0, 6000, true, false);
+        }
+    }
+    @SubscribeEvent
+    public static void wings(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.GEMSTONE_WINGS.get())) {
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 1, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.WIND_CHARGED, 20, 1, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
         }
     }
 }

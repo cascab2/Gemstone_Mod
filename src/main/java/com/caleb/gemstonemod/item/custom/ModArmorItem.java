@@ -19,8 +19,7 @@ public class ModArmorItem extends ArmorItem {
             (new ImmutableMap.Builder<Holder<ArmorMaterial>, List<MobEffectInstance>>())
                     .put(ModArmorMaterials.GEMSTONE_ARMOR_MATERIAL,
                             List.of(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 0, false, false),
-                                    new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0, false, false),
-                                    new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 0, false, false)))
+                                    new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0, false, false)))
                     .build();
 
     public ModArmorItem(Holder<ArmorMaterial> material, Type type, Properties properties) {

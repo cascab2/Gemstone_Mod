@@ -98,6 +98,8 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.KOHLRABI_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> TRICERATOPS_BONE = ITEMS.register("triceratops_bone",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GEMSTONE_WINGS = ITEMS.register("gemstone_wings",
+            () -> new ElytraItem(new Item.Properties().durability(864)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
