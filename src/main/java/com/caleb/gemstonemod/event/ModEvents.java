@@ -174,8 +174,7 @@ public class ModEvents {
     @SubscribeEvent
     public static void wings(LivingEvent.LivingTickEvent event) {
         if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.GEMSTONE_WINGS.get())) {
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 1, false, false));
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.WIND_CHARGED, 20, 1, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 0, false, false));
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
         }
     }
