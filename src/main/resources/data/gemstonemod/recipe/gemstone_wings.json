@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": {
+    "C": {
       "item": "gemstonemod:gemstone_essence"
     },
     "B": {
       "item": "minecraft:elytra"
     },
-    "C": {
+    "A": {
       "item": "minecraft:glass"
     }
   },

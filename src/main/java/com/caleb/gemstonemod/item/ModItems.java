@@ -26,11 +26,11 @@ public class ModItems {
     public static final RegistryObject<Item> RAW_SAPHIRITE = ITEMS.register("raw_saphirite",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> AMBERITE_CATALYST = ITEMS.register("amberite_catalyst",
-            () -> new AmberiteCatalystItem(new Item.Properties().durability(16)));
+            () -> new AmberiteCatalystItem(new Item.Properties().durability(10)));
     public static final RegistryObject<Item> SAPHIRITE_CATALYST = ITEMS.register("saphirite_catalyst",
-            () -> new SaphiriteCatalystItem(new Item.Properties().durability(16)));
+            () -> new SaphiriteCatalystItem(new Item.Properties().durability(10)));
     public static final RegistryObject<Item> OPALITE_CATALYST = ITEMS.register("opalite_catalyst",
-            () -> new OpaliteCatalystItem(new Item.Properties().durability(16)));
+            () -> new OpaliteCatalystItem(new Item.Properties().durability(10)));
     public static final RegistryObject<Item> AMBERITE_APPLE = ITEMS.register("amberite_apple",
             () -> new Item(new Item.Properties().food(ModFoodProperties.AMBERITE_APPLE)));
     public static final RegistryObject<Item> SAPHIRITE_APPLE = ITEMS.register("saphirite_apple",

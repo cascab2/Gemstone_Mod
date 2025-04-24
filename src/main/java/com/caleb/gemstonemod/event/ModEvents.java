@@ -2,6 +2,7 @@ package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.block.ModBlocks;
+import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantments;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
@@ -17,8 +18,12 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileDeflection;
+import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -174,8 +179,17 @@ public class ModEvents {
     @SubscribeEvent
     public static void wings(LivingEvent.LivingTickEvent event) {
         if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.GEMSTONE_WINGS.get())) {
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 0, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 1, false, false));
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
+        }
+    }
+    @SubscribeEvent
+    public static void jump(LivingEvent.LivingJumpEvent event) {
+        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.GEMSTONE_BOOTS.get()) && event.getEntity().isCrouching()) {
+            Level world = event.getEntity().level();
+            WindCharge windCharge = new WindCharge(world, event.getEntity().getX(), event.getEntity().getY() + 0.06, event.getEntity().getZ(), Vec3.directionFromRotation(90, 0));
+            BlockPos pos = new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY() - 1, event.getEntity().getBlockZ());
+            world.addFreshEntity(windCharge);
         }
     }
 }
