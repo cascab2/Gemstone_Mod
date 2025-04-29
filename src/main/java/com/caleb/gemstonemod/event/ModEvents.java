@@ -11,6 +11,7 @@ import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -185,7 +186,7 @@ public class ModEvents {
     }
     @SubscribeEvent
     public static void jump(LivingEvent.LivingJumpEvent event) {
-        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.GEMSTONE_BOOTS.get()) && event.getEntity().isCrouching()) {
+        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.GEMSTONE_BOOTS.get()) && event.getEntity().isCrouching() && event.getEntity().getItemInHand(InteractionHand.OFF_HAND).getItem().equals(ModItems.KOHLRABI.get())) {
             Level world = event.getEntity().level();
             WindCharge windCharge = new WindCharge(world, event.getEntity().getX(), event.getEntity().getY() + 0.06, event.getEntity().getZ(), Vec3.directionFromRotation(90, 0));
             BlockPos pos = new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY() - 1, event.getEntity().getBlockZ());
