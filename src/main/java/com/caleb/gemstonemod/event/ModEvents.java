@@ -191,6 +191,7 @@ public class ModEvents {
             WindCharge windCharge = new WindCharge(world, event.getEntity().getX(), event.getEntity().getY() + 0.06, event.getEntity().getZ(), Vec3.directionFromRotation(90, 0));
             BlockPos pos = new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY() - 1, event.getEntity().getBlockZ());
             world.addFreshEntity(windCharge);
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 2, false, false));
         }
     }
 }
