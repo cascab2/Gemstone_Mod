@@ -100,6 +100,14 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GEMSTONE_WINGS = ITEMS.register("gemstone_wings",
             () -> new ElytraItem(new Item.Properties().durability(864)));
+    public static final RegistryObject<Item> ANDESITE_SINGULARITY = ITEMS.register("andesite_singularity",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GRANITE_SINGULARITY = ITEMS.register("granite_singularity",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DIORITE_SINGULARITY = ITEMS.register("diorite_singularity",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ROCK_SINGULARITY = ITEMS.register("rock_singularity",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

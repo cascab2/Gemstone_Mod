@@ -18,6 +18,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
@@ -192,6 +193,16 @@ public class ModEvents {
             BlockPos pos = new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY() - 1, event.getEntity().getBlockZ());
             world.addFreshEntity(windCharge);
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 2, false, false));
+        }
+    }
+    @SubscribeEvent
+    public static void graniteBroken(BlockEvent.BreakEvent event) {
+        if (event.getState().getBlock().equals(Blocks.GRANITE)) {
+            Level world = event.getPlayer().level();
+            double rand = Math.random();
+            if (rand >= 0.5) {
+                world.addFreshEntity(new ItemEntity(world, (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ModItems.GRANITE_SINGULARITY.get())));
+            }
         }
     }
 }

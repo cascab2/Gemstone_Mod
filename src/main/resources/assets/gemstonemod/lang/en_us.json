@@ -32,6 +32,10 @@
   "item.gemstonemod.kohlrabi_seeds": "Kohlrabi Seeds",
   "item.gemstonemod.triceratops_bone": "Triceratops Bone",
   "item.gemstonemod.gemstone_wings": "Invisible Wings",
+  "item.gemstonemod.andesite_singularity": "Andesite Singularity",
+  "item.gemstonemod.diorite_singularity": "Diorite Singularity",
+  "item.gemstonemod.granite_singularity": "Granite Singularity",
+  "item.gemstonemod.rock_singularity": "Rock Singularity",
 
   "block.gemstonemod.amberite_block": "Block of Amberite",
   "block.gemstonemod.amberite_ore": "Amberite Ore",

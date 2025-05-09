@@ -75,6 +75,10 @@ public class GemstoneMod {
             event.accept(ModItems.RAW_OPALITE);
             event.accept(ModItems.GEMSTONE_ESSENCE);
             event.accept(ModItems.TRICERATOPS_BONE);
+            event.accept(ModItems.DIORITE_SINGULARITY);
+            event.accept(ModItems.ANDESITE_SINGULARITY);
+            event.accept(ModItems.GRANITE_SINGULARITY);
+            event.accept(ModItems.ROCK_SINGULARITY);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);

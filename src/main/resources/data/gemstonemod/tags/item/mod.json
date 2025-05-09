@@ -45,6 +45,10 @@
     "gemstonemod:kohlrabi",
     "gemstonemod:kohlrabi_seeds",
     "gemstonemod:triceratops_bone",
-    "gemstonemod:gemstone_wings"
+    "gemstonemod:gemstone_wings",
+    "gemstonemod:andesite_singularity",
+    "gemstonemod:diorite_singularity",
+    "gemstonemod:granite_singularity",
+    "gemstonemod:rock_singularity"
   ]
 }
