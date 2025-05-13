@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gemstonemod:granite_singularity"
+    },
+    {
+      "item": "gemstonemod:diorite_singularity"
+    },
+    {
+      "item": "gemstonemod:andesite_singularity"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:rock_singularity"
+  }
+}

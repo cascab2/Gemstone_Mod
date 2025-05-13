@@ -9,6 +9,8 @@ import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -23,6 +25,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -129,6 +133,9 @@ public class ModEvents {
                         .setBaseValue(1.0f);
             }
         }
+        if (event.getEntity() instanceof ServerPlayer && ((Player) event.getEntity()).getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.GEMSTONE_BOOTS.get()) && ((Player) event.getEntity()).getOffhandItem().getItem().equals(ModItems.SWIFTNESS_SINGULARITY.get())) {
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 2, false, false, false));
+        }
     }
     @SubscribeEvent
     public static void onGemstoneBowHit (ProjectileImpactEvent event) {
@@ -187,21 +194,46 @@ public class ModEvents {
     }
     @SubscribeEvent
     public static void jump(LivingEvent.LivingJumpEvent event) {
-        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.GEMSTONE_BOOTS.get()) && event.getEntity().isCrouching() && event.getEntity().getItemInHand(InteractionHand.OFF_HAND).getItem().equals(ModItems.KOHLRABI.get())) {
+        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.GEMSTONE_BOOTS.get()) && event.getEntity().isCrouching() && event.getEntity().getItemInHand(InteractionHand.OFF_HAND).getItem().equals(ModItems.SWIFTNESS_SINGULARITY.get())) {
             Level world = event.getEntity().level();
-            WindCharge windCharge = new WindCharge(world, event.getEntity().getX(), event.getEntity().getY() + 0.06, event.getEntity().getZ(), Vec3.directionFromRotation(90, 0));
+            WindCharge windCharge = new WindCharge(world, event.getEntity().getX(), event.getEntity().getY() + 0.07, event.getEntity().getZ(), Vec3.directionFromRotation(90, 0));
             BlockPos pos = new BlockPos(event.getEntity().getBlockX(), event.getEntity().getBlockY() - 1, event.getEntity().getBlockZ());
             world.addFreshEntity(windCharge);
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 2, false, false));
         }
     }
     @SubscribeEvent
     public static void graniteBroken(BlockEvent.BreakEvent event) {
-        if (event.getState().getBlock().equals(Blocks.GRANITE)) {
+        Registry<Enchantment> enchantmentRegistry = event.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        Enchantment enchantment = enchantmentRegistry.get(ModEnchantments.ARCHAEOLOGY);
+        if (event.getState().getBlock().equals(Blocks.GRANITE) && enchantment != null) {
             Level world = event.getPlayer().level();
             double rand = Math.random();
-            if (rand >= 0.5) {
+            if (rand < 0.15) {
                 world.addFreshEntity(new ItemEntity(world, (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ModItems.GRANITE_SINGULARITY.get())));
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void dioriteBroken(BlockEvent.BreakEvent event) {
+        Registry<Enchantment> enchantmentRegistry = event.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        Enchantment enchantment = enchantmentRegistry.get(ModEnchantments.ARCHAEOLOGY);
+        if (event.getState().getBlock().equals(Blocks.DIORITE) && enchantment != null) {
+            Level world = event.getPlayer().level();
+            double rand = Math.random();
+            if (rand < 0.15) {
+                world.addFreshEntity(new ItemEntity(world, (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ModItems.DIORITE_SINGULARITY.get())));
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void andesiteBroken(BlockEvent.BreakEvent event) {
+        Registry<Enchantment> enchantmentRegistry = event.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        Enchantment enchantment = enchantmentRegistry.get(ModEnchantments.ARCHAEOLOGY);
+        if (event.getState().getBlock().equals(Blocks.ANDESITE) && enchantment != null) {
+            Level world = event.getPlayer().level();
+            double rand = Math.random();
+            if (rand < 0.15) {
+                world.addFreshEntity(new ItemEntity(world, (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ModItems.ANDESITE_SINGULARITY.get())));
             }
         }
     }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gemstonemod:item/rock_singularity"
+    "layer0": "gemstonemod:item/swiftness_singularity"
   }
 }

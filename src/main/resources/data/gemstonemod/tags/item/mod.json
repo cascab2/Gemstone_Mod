@@ -49,6 +49,7 @@
     "gemstonemod:andesite_singularity",
     "gemstonemod:diorite_singularity",
     "gemstonemod:granite_singularity",
-    "gemstonemod:rock_singularity"
+    "gemstonemod:rock_singularity",
+    "gemstonemod:swiftness_singularity"
   ]
 }
