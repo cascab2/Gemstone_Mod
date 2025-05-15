@@ -191,6 +191,23 @@ public class ModEvents {
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 1, false, false));
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
         }
+        if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 2) {
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 2, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 0, false, false));
+        }
+        if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 0.5) {
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 0, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20, 0, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false));
+        }
+        if (!event.getEntity().getOffhandItem().getItem().equals(ModItems.SCALE_SINGULARITY.get())) {
+            event.getEntity().getAttribute(Attributes.SCALE).setBaseValue(1);
+        }
+        Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        Enchantment enchantment = enchantmentRegistry.get(ModEnchantments.ATTACK_SPEED);
+        if (enchantment == null && event.getEntity().getAttribute(Attributes.ATTACK_SPEED) != null) {
+            event.getEntity().getAttribute(Attributes.ATTACK_SPEED).setBaseValue(4);
+        }
     }
     @SubscribeEvent
     public static void jump(LivingEvent.LivingJumpEvent event) {
@@ -235,6 +252,26 @@ public class ModEvents {
             if (rand < 0.15) {
                 world.addFreshEntity(new ItemEntity(world, (double) event.getPos().getX(), (double) event.getPos().getY(), (double) event.getPos().getZ(), new ItemStack(ModItems.ANDESITE_SINGULARITY.get())));
             }
+        }
+    }
+    static int num = 0;
+    @SubscribeEvent
+    public static void jumpSize(LivingEvent.LivingJumpEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getEntity().getItemBySlot(EquipmentSlot.LEGS).getItem().equals(ModItems.GEMSTONE_LEGGINGS.get()) && event.getEntity().isCrouching() && event.getEntity().getItemInHand(InteractionHand.OFF_HAND).getItem().equals(ModItems.SCALE_SINGULARITY.get())) {
+            switch (num) {
+               case 0 -> {
+                   player.getAttribute(Attributes.SCALE).setBaseValue(2);
+                   num++;
+               }
+               case 1 -> {
+                   player.getAttribute(Attributes.SCALE).setBaseValue(0.5);
+                   num++;
+               }
+               case 2 -> {
+                   player.getAttribute(Attributes.SCALE).setBaseValue(1);
+                   num = 0;
+               }
+           }
         }
     }
 }

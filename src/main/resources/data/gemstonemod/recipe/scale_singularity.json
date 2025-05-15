@@ -6,7 +6,7 @@
       "item": "gemstonemod:rock_singularity"
     },
     "B": {
-      "item": "minecraft:elytra"
+      "item": "minecraft:sculk_catalyst"
     }
   },
   "pattern": [
@@ -16,6 +16,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "gemstonemod:swiftness_singularity"
+    "id": "gemstonemod:scale_singularity"
   }
 }

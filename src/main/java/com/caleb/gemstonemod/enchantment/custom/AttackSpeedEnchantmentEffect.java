@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -18,11 +19,11 @@ public record AttackSpeedEnchantmentEffect() implements EnchantmentEntityEffect 
         Player player = (Player) pEntity;
 
         if(pEnchantmentLevel == 1) {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 1, false, false, false));
+            player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(4.25);
         }
 
         if(pEnchantmentLevel == 2) {
-            player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 2, false, false, false));
+            player.getAttribute(Attributes.ATTACK_SPEED).setBaseValue(4.5);
         }
     }
 

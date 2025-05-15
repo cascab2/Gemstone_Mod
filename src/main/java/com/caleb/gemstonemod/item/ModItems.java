@@ -110,6 +110,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SWIFTNESS_SINGULARITY = ITEMS.register("swiftness_singularity",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SCALE_SINGULARITY = ITEMS.register("scale_singularity",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
