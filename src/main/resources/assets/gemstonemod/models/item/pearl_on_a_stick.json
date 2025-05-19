@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "gemstonemod:item/pearl_on_a_stick"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "cast": 1
+      },
+      "model": "gemstonemod:item/pearl_on_a_stick_cast"
+    }
+  ]
+}

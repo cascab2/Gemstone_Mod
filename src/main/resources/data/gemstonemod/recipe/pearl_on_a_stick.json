@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:ender_pearl"
+    },
+    "B": {
+      "item": "gemstonemod:triceratops_bone"
+    },
+    "C": {
+      "item": "minecraft:string"
+    },
+    "D": {
+      "item": "gemstonemod:gemstone_essence"
+    }
+  },
+  "pattern": [
+    "  B",
+    " DC",
+    "B A"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:pearl_on_a_stick"
+  }
+}

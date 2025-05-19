@@ -1,0 +1,6 @@
+{
+  "parent": "gemstonemod:item/pearl_on_a_stick",
+  "textures": {
+    "layer0": "gemstonemod:item/pearl_on_a_stick_cast"
+  }
+}

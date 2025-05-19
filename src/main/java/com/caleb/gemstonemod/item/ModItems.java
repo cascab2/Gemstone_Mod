@@ -112,6 +112,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SCALE_SINGULARITY = ITEMS.register("scale_singularity",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PEARL_ON_A_STICK = ITEMS.register("pearl_on_a_stick",
+            () -> new PearlOnAStickItem(new Item.Properties().durability(512)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
