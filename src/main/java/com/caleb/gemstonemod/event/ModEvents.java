@@ -2,7 +2,6 @@ package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.block.ModBlocks;
-import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantments;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
@@ -11,45 +10,31 @@ import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.DimensionTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ProjectileDeflection;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
-import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.levelgen.WorldDimensions;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.player.CriticalHitEvent;
-import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.w3c.dom.Attr;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -137,8 +122,9 @@ public class ModEvents {
     @SubscribeEvent
     public static void onOpaliteSwordNotHeld (LivingEvent.LivingTickEvent event) {
         ItemStack mainHandItem = event.getEntity().getMainHandItem();
+        ItemStack offHandItem = event.getEntity().getOffhandItem();
         if (event.getEntity() instanceof ServerPlayer && event.getEntity() instanceof Player) {
-            if (!(mainHandItem.getItem().equals(ModItems.OPALITE_SWORD.get()))) {
+            if (!(mainHandItem.getItem().equals(ModItems.OPALITE_SWORD.get()) || offHandItem.getItem().equals(ModItems.OPALITE_SWORD.get()))) {
                 event.getEntity().getAttribute(Attributes.ATTACK_SPEED)
                         .setBaseValue(4.0f);
                 event.getEntity().getAttribute(Attributes.ATTACK_DAMAGE)
@@ -288,8 +274,8 @@ public class ModEvents {
     }
     @SubscribeEvent
     public static void dragon(LivingAttackEvent event) {
-        if (event.getSource().getEntity() instanceof EnderDragon) {
-            ((EnderDragon) event.getSource().getEntity()).heal(20);
+        if (event.getSource().getEntity() instanceof EnderDragon && event.getEntity() instanceof ServerPlayer) {
+            ((EnderDragon) event.getSource().getEntity()).heal(2);
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 200, 1));
         }
     }
@@ -304,8 +290,23 @@ public class ModEvents {
         || event.getState().getBlock().equals(Blocks.WHITE_BED) || event.getState().getBlock().equals(Blocks.PURPLE_BED)
         || event.getState().getBlock().equals(Blocks.PINK_BED) || event.getState().getBlock().equals(Blocks.MAGENTA_BED)
         || event.getState().getBlock().equals(Blocks.RESPAWN_ANCHOR)) {
-            if (event.getLevel().dimensionType().equals(Level.END)) {
+            if (event.getLevel().dimensionType().minY() == 0) {
                 event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 0);
+            }
+        }
+    }
+
+    static int ticks = 0;
+    @SubscribeEvent
+    public static void dragonTicks(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity() instanceof EnderDragon && !event.getEntity().level().isClientSide) {
+            ticks++;
+            if (ticks % 15 == 0) {
+                event.getEntity().heal(1);
+            }
+            event.getEntity().getAttribute(Attributes.MAX_HEALTH).setBaseValue(300.0);
+            if (event.getEntity().getY() >= 170) {
+                event.getEntity().teleportTo(event.getEntity().getX(), 170, event.getEntity().getZ());
             }
         }
     }
