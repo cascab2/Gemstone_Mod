@@ -47,7 +47,6 @@ public class GemstoneLocatorItem extends Item {
                                 pLevel.getBlockState(pos).getBlock().equals(ModBlocks.OPALITE_ORE.get()) ||
                                 pLevel.getBlockState(pos).getBlock().equals(ModBlocks.DEEPSLATE_OPALITE_ORE.get())) {
                             pPlayer.getItemInHand(pUsedHand).set(ModDataComponentTypes.COORDINATES.get(), pos);
-                            pPlayer.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
                             found = true;
                             pLevel.playSound(pPlayer, pPlayer.getOnPos(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS);
                         }
@@ -56,6 +55,7 @@ public class GemstoneLocatorItem extends Item {
             }
         }
         if (found) {
+            pPlayer.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
             return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
         } else {
             return InteractionResultHolder.fail(pPlayer.getItemInHand(pUsedHand));
