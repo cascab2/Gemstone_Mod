@@ -114,6 +114,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PEARL_ON_A_STICK = ITEMS.register("pearl_on_a_stick",
             () -> new PearlOnAStickItem(new Item.Properties().durability(512)));
+    public static final RegistryObject<Item> GEMSTONE_LOCATOR = ITEMS.register("gemstone_locator",
+            () -> new GemstoneLocatorItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

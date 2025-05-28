@@ -17,6 +17,8 @@ public class ModItemProperties {
     public static void addCustomItemProperties () {
         ItemProperties.register(ModItems.OPALITE_SWORD.get(), ResourceLocation.fromNamespaceAndPath(GemstoneMod.MOD_ID, "overclocked"),
                 (itemStack, clientLevel, livingEntity, i) -> itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null ? 1f : 0f);
+        ItemProperties.register(ModItems.GEMSTONE_LEGGINGS.get(), ResourceLocation.fromNamespaceAndPath(GemstoneMod.MOD_ID, "located"),
+                (itemStack, clientLevel, livingEntity, i) -> itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null ? 1f : 0f);
 
         makeCustomBow(ModItems.GEMSTONE_BOW.get());
         makeCustomRod(ModItems.PEARL_ON_A_STICK.get());

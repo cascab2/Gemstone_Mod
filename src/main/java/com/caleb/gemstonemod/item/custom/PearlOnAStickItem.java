@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -30,6 +31,10 @@ public class PearlOnAStickItem extends FishingRodItem {
             pLevel.playSound(null, new BlockPos(pPlayer.getBlockX(), pPlayer.getBlockY(), pPlayer.getBlockZ()), SoundEvents.PLAYER_TELEPORT, SoundSource.PLAYERS);
             pPlayer.teleportTo(pPlayer.fishing.getX(), pPlayer.fishing.getY(), pPlayer.fishing.getZ());
             pPlayer.fishing.kill();
+            if (pHand.equals(InteractionHand.MAIN_HAND))
+                itemstack.hurtAndBreak(1, pPlayer, EquipmentSlot.MAINHAND);
+            else if (pHand.equals(InteractionHand.OFF_HAND))
+                itemstack.hurtAndBreak(1, pPlayer, EquipmentSlot.OFFHAND);
             pPlayer.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
         }
         else if (pPlayer.fishing == null && !pLevel.isClientSide) {
