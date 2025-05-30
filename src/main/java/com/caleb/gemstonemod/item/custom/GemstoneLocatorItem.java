@@ -4,6 +4,8 @@ import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,25 +16,28 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.LodestoneTracker;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-public class GemstoneLocatorItem extends Item {
+public class GemstoneLocatorItem extends CompassItem {
 
     public GemstoneLocatorItem(Properties pProperties) {
         super(pProperties);
     }
 
+
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public InteractionResult useOn(UseOnContext pContext) {
+        Player pPlayer = pContext.getPlayer();
+        InteractionHand pUsedHand = pContext.getHand();
+        Level pLevel = pContext.getLevel();
         boolean found = false;
         if (pUsedHand.equals(InteractionHand.MAIN_HAND) && pPlayer.getItemInHand(InteractionHand.OFF_HAND).getItem().equals(Items.AMETHYST_SHARD)) {
             found = false;
@@ -49,6 +54,7 @@ public class GemstoneLocatorItem extends Item {
                             pPlayer.getItemInHand(pUsedHand).set(ModDataComponentTypes.COORDINATES.get(), pos);
                             found = true;
                             pLevel.playSound(pPlayer, pPlayer.getOnPos(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS);
+                            LodestoneTracker lodestonetracker = new LodestoneTracker(Optional.of(GlobalPos.of(pLevel.dimension(), pos)), true);
                         }
                     }
                 }
@@ -56,9 +62,9 @@ public class GemstoneLocatorItem extends Item {
         }
         if (found) {
             pPlayer.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
-            return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
         } else {
-            return InteractionResultHolder.fail(pPlayer.getItemInHand(pUsedHand));
+            return InteractionResult.FAIL;
         }
     }
 

@@ -3,14 +3,14 @@ package com.caleb.gemstonemod.util;
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.item.ModItems;
+import net.minecraft.client.renderer.item.CompassItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.FishingRodItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.LodestoneTracker;
 import net.minecraftforge.fml.common.Mod;
 
 public class ModItemProperties {
@@ -19,6 +19,10 @@ public class ModItemProperties {
                 (itemStack, clientLevel, livingEntity, i) -> itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null ? 1f : 0f);
         ItemProperties.register(ModItems.GEMSTONE_LEGGINGS.get(), ResourceLocation.fromNamespaceAndPath(GemstoneMod.MOD_ID, "located"),
                 (itemStack, clientLevel, livingEntity, i) -> itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null ? 1f : 0f);
+        ItemProperties.register(ModItems.GEMSTONE_LOCATOR.get(), ResourceLocation.withDefaultNamespace("angle"), new CompassItemPropertyFunction((p_325560_, p_325561_, p_325562_) -> {
+            LodestoneTracker lodestonetracker = p_325561_.get(DataComponents.LODESTONE_TRACKER);
+            return lodestonetracker != null ? lodestonetracker.target().orElse(null) : CompassItem.getSpawnPosition(p_325560_);
+        }));
 
         makeCustomBow(ModItems.GEMSTONE_BOW.get());
         makeCustomRod(ModItems.PEARL_ON_A_STICK.get());
