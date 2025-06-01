@@ -9,6 +9,7 @@ import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

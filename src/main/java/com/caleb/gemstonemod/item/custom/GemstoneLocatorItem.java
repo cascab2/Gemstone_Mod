@@ -21,6 +21,8 @@ import net.minecraft.world.item.component.LodestoneTracker;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 import java.util.Map;
@@ -39,28 +41,32 @@ public class GemstoneLocatorItem extends CompassItem {
         InteractionHand pUsedHand = pContext.getHand();
         Level pLevel = pContext.getLevel();
         boolean found = false;
+        BlockPos pos = null;
         if (pUsedHand.equals(InteractionHand.MAIN_HAND) && pPlayer.getItemInHand(InteractionHand.OFF_HAND).getItem().equals(Items.AMETHYST_SHARD)) {
             found = false;
             for (int x = pPlayer.getBlockX() - 30; x <= pPlayer.getBlockX() + 30; x++) {
                 for (int y = pPlayer.getBlockY() - 30; y <= pPlayer.getBlockY() + 30; y++) {
                     for (int z = pPlayer.getBlockZ() - 30; z <= pPlayer.getBlockZ() + 30; z++) {
-                        BlockPos pos = new BlockPos(x, y, z);
-                        if (pLevel.getBlockState(pos).getBlock().equals(ModBlocks.AMBERITE_ORE.get()) ||
-                                pLevel.getBlockState(pos).getBlock().equals(ModBlocks.DEEPSLATE_AMBERITE_ORE.get()) ||
-                                pLevel.getBlockState(pos).getBlock().equals(ModBlocks.SAPHIRITE_ORE.get()) ||
-                                pLevel.getBlockState(pos).getBlock().equals(ModBlocks.DEEPSLATE_SAPHIRITE_ORE.get()) ||
-                                pLevel.getBlockState(pos).getBlock().equals(ModBlocks.OPALITE_ORE.get()) ||
-                                pLevel.getBlockState(pos).getBlock().equals(ModBlocks.DEEPSLATE_OPALITE_ORE.get())) {
-                            pPlayer.getItemInHand(pUsedHand).set(ModDataComponentTypes.COORDINATES.get(), pos);
+                        BlockPos pos1 = new BlockPos(x, y, z);
+                        if (pLevel.getBlockState(pos1).getBlock().equals(ModBlocks.AMBERITE_ORE.get()) ||
+                                pLevel.getBlockState(pos1).getBlock().equals(ModBlocks.DEEPSLATE_AMBERITE_ORE.get()) ||
+                                pLevel.getBlockState(pos1).getBlock().equals(ModBlocks.SAPHIRITE_ORE.get()) ||
+                                pLevel.getBlockState(pos1).getBlock().equals(ModBlocks.DEEPSLATE_SAPHIRITE_ORE.get()) ||
+                                pLevel.getBlockState(pos1).getBlock().equals(ModBlocks.OPALITE_ORE.get()) ||
+                                pLevel.getBlockState(pos1).getBlock().equals(ModBlocks.DEEPSLATE_OPALITE_ORE.get())) {
                             found = true;
+                            pos = pos1;
                             pLevel.playSound(pPlayer, pPlayer.getOnPos(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS);
-                            LodestoneTracker lodestonetracker = new LodestoneTracker(Optional.of(GlobalPos.of(pLevel.dimension(), pos)), true);
                         }
                     }
                 }
             }
         }
+        if (pos == null) {
+            found = false;
+        }
         if (found) {
+            pPlayer.getItemInHand(pUsedHand).set(ModDataComponentTypes.COORDINATES.get(), pos);
             pPlayer.getItemInHand(InteractionHand.OFF_HAND).shrink(1);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         } else {
@@ -71,7 +77,7 @@ public class GemstoneLocatorItem extends CompassItem {
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pToolTipFlag) {
         if (pStack.get(ModDataComponentTypes.COORDINATES.get()) != null) {
-            pTooltipComponents.add(Component.literal("Ore Located at " + ("" + pStack.get(ModDataComponentTypes.COORDINATES.get())).substring(9, ("" + pStack.get(ModDataComponentTypes.COORDINATES.get())).length() - 1)));
+            pTooltipComponents.add(Component.literal("Ore Located at " + ("" + pStack.get(ModDataComponentTypes.COORDINATES.get())).substring(9, ("" + pStack.get(ModDataComponentTypes.COORDINATES.get())).length() - 1)).withColor(0x80FF20));
         }
 
         super.appendHoverText(pStack, pContext, pTooltipComponents, pToolTipFlag);
