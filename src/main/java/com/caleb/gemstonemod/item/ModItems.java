@@ -41,7 +41,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoodProperties.DIAMOND_APPLE)));
     public static final RegistryObject<Item> AMBERITE_SWORD = ITEMS.register("amberite_sword",
             () -> new AmberiteSwordItem(ModToolTiers.AMBERITE, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -7, -2.4f))));
+                    .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, -5, -2.4f))));
     public static final RegistryObject<Item> AMBERITE_PICKAXE = ITEMS.register("amberite_pickaxe",
             () -> new AmberitePickaxeItem(ModToolTiers.AMBERITE, new Item.Properties()
                     .attributes(SwordItem.createAttributes(ModToolTiers.AMBERITE, 1, -2.8f))));

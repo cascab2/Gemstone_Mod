@@ -192,11 +192,18 @@ public class ModEvents {
         }
         if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 2) {
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 2, false, false));
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 0, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 2, false, false));
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 1, false, false));
         }
         if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 0.5) {
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 0, false, false));
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20, 0, false, false));
+            if (event.getEntity().getEffect(MobEffects.NIGHT_VISION) != null) {
+                if (event.getEntity().getEffect(MobEffects.NIGHT_VISION).getDuration() <= 201) {
+                    event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false));
+                }
+            } else {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false));
+            }
             event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false));
         }
         if (!event.getEntity().getOffhandItem().getItem().equals(ModItems.SCALE_SINGULARITY.get())) {
@@ -306,8 +313,8 @@ public class ModEvents {
                 event.getEntity().heal(1);
             }
             event.getEntity().getAttribute(Attributes.MAX_HEALTH).setBaseValue(300.0);
-            if (event.getEntity().getY() >= 170) {
-                event.getEntity().teleportTo(event.getEntity().getX(), 170, event.getEntity().getZ());
+            if (event.getEntity().getY() > 140) {
+                event.getEntity().teleportTo(event.getEntity().getX(), 140, event.getEntity().getZ());
             }
         }
     }
