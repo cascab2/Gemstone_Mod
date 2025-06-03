@@ -25,6 +25,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
@@ -34,6 +35,7 @@ import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -369,6 +371,14 @@ public class ModEvents {
                     event.getEntity().setItemSlot(EquipmentSlot.HEAD, newItem);
                 }
             }
+        }
+    }
+    @SubscribeEvent
+    public static void onEyeOfEnder(PlayerInteractEvent.RightClickItem event) {
+        if (event.getItemStack().getItem().equals(Items.ENDER_EYE) && !event.getLevel().isClientSide
+                && !(event.getEntity().getItemInHand(InteractionHand.OFF_HAND).getItem().equals(ModItems.OVERWORLD_ZENITH.get())
+        || event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.OVERWORLD_ZENITH.get()))) {
+            event.setCanceled(true);
         }
     }
 }

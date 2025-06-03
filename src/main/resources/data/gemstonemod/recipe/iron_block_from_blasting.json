@@ -2,12 +2,12 @@
   "type": "minecraft:blasting",
   "category": "misc",
   "cookingtime": 100,
-  "experience": 0.25,
-  "group": "amberite",
+  "experience": 0.9,
+  "group": "iron_ingot",
   "ingredient": {
-    "item": "gemstonemod:raw_opalite"
+    "item": "minecraft:raw_iron_block"
   },
   "result": {
-    "id": "gemstonemod:opalite"
+    "id": "minecraft:iron_block"
   }
 }

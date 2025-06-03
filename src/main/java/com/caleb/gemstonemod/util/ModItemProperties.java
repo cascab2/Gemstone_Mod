@@ -24,29 +24,17 @@ public class ModItemProperties {
                 (itemStack, clientLevel, livingEntity, i) -> {
                     if (itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null) {
                         BlockPos targetPos = itemStack.get(ModDataComponentTypes.COORDINATES.get());
-
-// Vector from player to target (XZ-plane only)
                         Vec3 toTarget = new Vec3(
                                 targetPos.getX() + 0.5 - livingEntity.getX(),
                                 0,
                                 targetPos.getZ() + 0.5 - livingEntity.getZ()
                         ).normalize();
-
-// Player's current facing direction (XZ-plane only)
                         Vec3 look = livingEntity.getLookAngle();
                         Vec3 lookFlat = new Vec3(look.x, 0, look.z).normalize();
-
-// Angle between vectors (signed)
                         double dot = lookFlat.dot(toTarget);
-                        double det = lookFlat.x * toTarget.z - lookFlat.z * toTarget.x; // cross product Z
-                        double angle = Math.atan2(det, dot); // returns angle in radians (-π to π)
-
-// Normalize to [0, 1) — and shift so 0.0 means "straight ahead"
+                        double det = lookFlat.x * toTarget.z - lookFlat.z * toTarget.x;
+                        double angle = Math.atan2(det, dot);
                         angle = (angle / (2 * Math.PI) + 1) % 1.0;
-
-// Rotate so 0.0 = South, if needed — only if your model expects it
-// angle = (angle + 0.25) % 1.0;
-
                         int steps = 32;
                         float stepSize = 1.0f / steps;
                         int index = Math.floorMod(Math.round(angle * steps), steps);

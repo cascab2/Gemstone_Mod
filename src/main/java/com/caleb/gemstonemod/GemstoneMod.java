@@ -81,6 +81,7 @@ public class GemstoneMod {
             event.accept(ModItems.ROCK_SINGULARITY);
             event.accept(ModItems.SWIFTNESS_SINGULARITY);
             event.accept(ModItems.SCALE_SINGULARITY);
+            event.accept(ModItems.OVERWORLD_ZENITH);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);

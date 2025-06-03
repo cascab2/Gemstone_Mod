@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "gemstonemod:raw_amberite"
+  },
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:amberite"
+  }
+}

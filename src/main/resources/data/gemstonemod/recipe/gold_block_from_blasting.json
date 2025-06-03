@@ -2,12 +2,12 @@
   "type": "minecraft:blasting",
   "category": "misc",
   "cookingtime": 100,
-  "experience": 0.25,
-  "group": "amberite",
+  "experience": 0.9,
+  "group": "gold_ingot",
   "ingredient": {
-    "item": "gemstonemod:raw_amberite"
+    "item": "minecraft:raw_gold_block"
   },
   "result": {
-    "id": "gemstonemod:amberite"
+    "id": "minecraft:gold_block"
   }
 }
