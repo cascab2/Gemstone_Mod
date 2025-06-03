@@ -19,6 +19,14 @@
     "gemstonemod:saphirite_catalyst",
     "gemstonemod:opalite_catalyst",
     "gemstonemod:gemstone_wings",
-    "gemstonemod:pearl_on_a_stick"
+    "gemstonemod:pearl_on_a_stick",
+    "gemstonemod:copper_helmet",
+    "gemstonemod:copper_chestplate",
+    "gemstonemod:copper_leggings",
+    "gemstonemod:copper_boots",
+    "gemstonemod:oxidized_helmet",
+    "gemstonemod:oxidized_chestplate",
+    "gemstonemod:oxidized_leggings",
+    "gemstonemod:oxidized_boots"
   ]
 }

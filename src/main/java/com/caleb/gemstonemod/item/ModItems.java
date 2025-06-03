@@ -86,6 +86,30 @@ public class ModItems {
     public static final RegistryObject<Item> GEMSTONE_BOOTS = ITEMS.register("gemstone_boots",
             () -> new ModArmorItem(ModArmorMaterials.GEMSTONE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(45))));
+    public static final RegistryObject<Item> COPPER_HELMET = ITEMS.register("copper_helmet",
+            () -> new ModArmorItem(ModArmorMaterials.COPPPER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(16))));
+    public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("copper_chestplate",
+            () -> new ModArmorItem(ModArmorMaterials.COPPPER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(16))));
+    public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("copper_leggings",
+            () -> new ModArmorItem(ModArmorMaterials.COPPPER_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(16))));
+    public static final RegistryObject<Item> COPPER_BOOTS = ITEMS.register("copper_boots",
+            () -> new ModArmorItem(ModArmorMaterials.COPPPER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(16))));
+    public static final RegistryObject<Item> OXIDIZED_HELMET = ITEMS.register("oxidized_helmet",
+            () -> new ModArmorItem(ModArmorMaterials.OXIDIZED_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                    new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(16))));
+    public static final RegistryObject<Item> OXIDIZED_CHESTPLATE = ITEMS.register("oxidized_chestplate",
+            () -> new ModArmorItem(ModArmorMaterials.OXIDIZED_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(16))));
+    public static final RegistryObject<Item> OXIDIZED_LEGGINGS = ITEMS.register("oxidized_leggings",
+            () -> new ModArmorItem(ModArmorMaterials.OXIDIZED_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(16))));
+    public static final RegistryObject<Item> OXIDIZED_BOOTS = ITEMS.register("oxidized_boots",
+            () -> new ModArmorItem(ModArmorMaterials.OXIDIZED_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                    new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(16))));
     public static final RegistryObject<Item> GEMSTONE_ESSENCE = ITEMS.register("gemstone_essence",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GEMSTONE_BOW = ITEMS.register("gemstone_bow",

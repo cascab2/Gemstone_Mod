@@ -53,6 +53,14 @@
     "gemstonemod:swiftness_singularity",
     "gemstonemod:scale_singularity",
     "gemstonemod:pearl_on_a_stick",
-    "gemstonemod:gemstone_locator"
+    "gemstonemod:gemstone_locator",
+    "gemstonemod:copper_helmet",
+    "gemstonemod:copper_chestplate",
+    "gemstonemod:copper_leggings",
+    "gemstonemod:copper_boots",
+    "gemstonemod:oxidized_helmet",
+    "gemstonemod:oxidized_chestplate",
+    "gemstonemod:oxidized_leggings",
+    "gemstonemod:oxidized_boots"
   ]
 }

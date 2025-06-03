@@ -2,6 +2,7 @@ package com.caleb.gemstonemod.event;
 
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.block.ModBlocks;
+import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantments;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
@@ -25,6 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
@@ -315,6 +317,57 @@ public class ModEvents {
             event.getEntity().getAttribute(Attributes.MAX_HEALTH).setBaseValue(300.0);
             if (event.getEntity().getY() > 140) {
                 event.getEntity().teleportTo(event.getEntity().getX(), 140, event.getEntity().getZ());
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void copperArmorTicks(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity().getItemBySlot(EquipmentSlot.FEET).getItem().equals(ModItems.COPPER_BOOTS.get())) {
+            ItemStack item = event.getEntity().getItemBySlot(EquipmentSlot.FEET);
+            if (item.get(ModDataComponentTypes.OXIDIZATION.get()) == null) {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), 0);
+            } else {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), item.get(ModDataComponentTypes.OXIDIZATION.get()) + 1);
+                if (item.get(ModDataComponentTypes.OXIDIZATION.get()) > 24000) {
+                    ItemStack newItem = new ItemStack(ModItems.OXIDIZED_BOOTS.get());
+                    event.getEntity().setItemSlot(EquipmentSlot.FEET, newItem);
+                }
+            }
+        }
+        if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.COPPER_CHESTPLATE.get())) {
+            ItemStack item = event.getEntity().getItemBySlot(EquipmentSlot.CHEST);
+            if (item.get(ModDataComponentTypes.OXIDIZATION.get()) == null) {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), 0);
+            } else {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), item.get(ModDataComponentTypes.OXIDIZATION.get()) + 1);
+                if (item.get(ModDataComponentTypes.OXIDIZATION.get()) > 24000) {
+                    ItemStack newItem = new ItemStack(ModItems.OXIDIZED_CHESTPLATE.get());
+                    event.getEntity().setItemSlot(EquipmentSlot.CHEST, newItem);
+                }
+            }
+        }
+        if (event.getEntity().getItemBySlot(EquipmentSlot.LEGS).getItem().equals(ModItems.COPPER_LEGGINGS.get())) {
+            ItemStack item = event.getEntity().getItemBySlot(EquipmentSlot.LEGS);
+            if (item.get(ModDataComponentTypes.OXIDIZATION.get()) == null) {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), 0);
+            } else {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), item.get(ModDataComponentTypes.OXIDIZATION.get()) + 1);
+                if (item.get(ModDataComponentTypes.OXIDIZATION.get()) > 24000) {
+                    ItemStack newItem = new ItemStack(ModItems.OXIDIZED_LEGGINGS.get());
+                    event.getEntity().setItemSlot(EquipmentSlot.LEGS, newItem);
+                }
+            }
+        }
+        if (event.getEntity().getItemBySlot(EquipmentSlot.HEAD).getItem().equals(ModItems.COPPER_HELMET.get())) {
+            ItemStack item = event.getEntity().getItemBySlot(EquipmentSlot.HEAD);
+            if (item.get(ModDataComponentTypes.OXIDIZATION.get()) == null) {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), 0);
+            } else {
+                item.set(ModDataComponentTypes.OXIDIZATION.get(), item.get(ModDataComponentTypes.OXIDIZATION.get()) + 1);
+                if (item.get(ModDataComponentTypes.OXIDIZATION.get()) > 24000) {
+                    ItemStack newItem = new ItemStack(ModItems.OXIDIZED_HELMET.get());
+                    event.getEntity().setItemSlot(EquipmentSlot.HEAD, newItem);
+                }
             }
         }
     }

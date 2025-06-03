@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "gemstonemod:gemstone_helmet"
+    "gemstonemod:gemstone_helmet",
+    "gemstonemod:copper_helmet",
+    "gemstonemod:oxidized_helmet"
   ]
 }

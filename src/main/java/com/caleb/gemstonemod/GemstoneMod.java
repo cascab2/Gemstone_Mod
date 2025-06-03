@@ -131,6 +131,14 @@ public class GemstoneMod {
             event.accept(ModItems.GEMSTONE_BOOTS);
             event.accept(ModItems.GEMSTONE_BOW);
             event.accept(ModItems.GEMSTONE_WINGS);
+            event.accept(ModItems.COPPER_HELMET);
+            event.accept(ModItems.COPPER_CHESTPLATE);
+            event.accept(ModItems.COPPER_LEGGINGS);
+            event.accept(ModItems.COPPER_BOOTS);
+            event.accept(ModItems.OXIDIZED_HELMET);
+            event.accept(ModItems.OXIDIZED_CHESTPLATE);
+            event.accept(ModItems.OXIDIZED_LEGGINGS);
+            event.accept(ModItems.OXIDIZED_BOOTS);
         }
 
 

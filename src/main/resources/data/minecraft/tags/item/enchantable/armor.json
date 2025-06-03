@@ -5,6 +5,14 @@
     "gemstonemod:gemstone_chestplate",
     "gemstonemod:gemstone_leggings",
     "gemstonemod:gemstone_boots",
-    "gemstonemod:gemstone_wings"
+    "gemstonemod:gemstone_wings",
+    "gemstonemod:copper_helmet",
+    "gemstonemod:copper_chestplate",
+    "gemstonemod:copper_leggings",
+    "gemstonemod:copper_boots",
+    "gemstonemod:oxidized_helmet",
+    "gemstonemod:oxidized_chestplate",
+    "gemstonemod:oxidized_leggings",
+    "gemstonemod:oxidized_boots"
   ]
 }

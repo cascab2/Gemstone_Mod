@@ -1,6 +1,7 @@
 package com.caleb.gemstonemod.component;
 
 import com.caleb.gemstonemod.GemstoneMod;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +18,9 @@ public class ModDataComponentTypes {
 
     public static final RegistryObject<DataComponentType<BlockPos>> COORDINATES = register("coordinates",
             builder -> builder.persistent(BlockPos.CODEC));
+
+    public static final RegistryObject<DataComponentType<Integer>> OXIDIZATION = register("oxidization",
+            builder -> builder.persistent(Codec.INT));
 
 
     private static <T>RegistryObject<DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
