@@ -1,0 +1,19 @@
+{
+  "type": "gemstonemod:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:all_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:entities/creeper"
+        },
+        {
+          "chance": 0.9,
+          "condition": "minecraft:random_chance"
+        }
+      ]
+    }
+  ],
+  "item": "gemstonemod:warden_heart"
+}

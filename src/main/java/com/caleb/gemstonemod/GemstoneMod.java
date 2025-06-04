@@ -6,6 +6,7 @@ import com.caleb.gemstonemod.enchantment.ModEnchantmentEffects;
 import com.caleb.gemstonemod.entity.ModEntities;
 import com.caleb.gemstonemod.entity.client.TriceratopsRenderer;
 import com.caleb.gemstonemod.item.ModItems;
+import com.caleb.gemstonemod.loot.ModLootModifiers;
 import com.caleb.gemstonemod.util.ModItemProperties;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -55,6 +56,8 @@ public class GemstoneMod {
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        ModLootModifiers.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -82,6 +85,7 @@ public class GemstoneMod {
             event.accept(ModItems.SWIFTNESS_SINGULARITY);
             event.accept(ModItems.SCALE_SINGULARITY);
             event.accept(ModItems.OVERWORLD_ZENITH);
+            event.accept(ModItems.WARDEN_HEART);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_BLOCK);

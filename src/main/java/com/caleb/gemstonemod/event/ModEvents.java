@@ -30,6 +30,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -379,6 +380,13 @@ public class ModEvents {
                 && !(event.getEntity().getItemInHand(InteractionHand.OFF_HAND).getItem().equals(ModItems.OVERWORLD_ZENITH.get())
         || event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.OVERWORLD_ZENITH.get()))) {
             event.setCanceled(true);
+        }
+    }
+    @SubscribeEvent
+    public static void onSculkCatalystBroken(BlockEvent.BreakEvent event) {
+        if (event.getState().getBlock().equals(Blocks.SCULK_CATALYST)) {
+            event.setCanceled(true);
+            event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 0);
         }
     }
 }

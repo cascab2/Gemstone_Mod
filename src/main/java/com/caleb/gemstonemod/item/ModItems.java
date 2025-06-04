@@ -111,7 +111,7 @@ public class ModItems {
             () -> new ModArmorItem(ModArmorMaterials.OXIDIZED_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
                     new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(16))));
     public static final RegistryObject<Item> GEMSTONE_ESSENCE = ITEMS.register("gemstone_essence",
-            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> GEMSTONE_BOW = ITEMS.register("gemstone_bow",
             () -> new GemstoneBowItem(new Item.Properties().durability(500)));
     public static final RegistryObject<Item> KOHLRABI = ITEMS.register("kohlrabi",
@@ -133,15 +133,17 @@ public class ModItems {
     public static final RegistryObject<Item> ROCK_SINGULARITY = ITEMS.register("rock_singularity",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SWIFTNESS_SINGULARITY = ITEMS.register("swiftness_singularity",
-            () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SCALE_SINGULARITY = ITEMS.register("scale_singularity",
-            () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
+            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PEARL_ON_A_STICK = ITEMS.register("pearl_on_a_stick",
             () -> new PearlOnAStickItem(new Item.Properties().durability(512)));
     public static final RegistryObject<Item> GEMSTONE_LOCATOR = ITEMS.register("gemstone_locator",
-            () -> new GemstoneLocatorItem(new Item.Properties().rarity(Rarity.RARE)));
+            () -> new GemstoneLocatorItem(new Item.Properties()));
     public static final RegistryObject<Item> OVERWORLD_ZENITH = ITEMS.register("overworld_zenith",
-            () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
