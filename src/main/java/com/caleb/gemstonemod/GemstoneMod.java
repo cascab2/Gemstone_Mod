@@ -114,7 +114,8 @@ public class GemstoneMod {
             event.accept(ModItems.SAPHIRITE_AXE);
             event.accept(ModItems.SAPHIRITE_PICKAXE);
             event.accept(ModItems.PEARL_ON_A_STICK);
-            event.accept(ModItems.GEMSTONE_LOCATOR.get());
+            event.accept(ModItems.GEMSTONE_LOCATOR);
+            event.accept(ModItems.BRIDGE_BUILDER);
         }
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.AMBERITE_APPLE);

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "B": {
+      "item": "minecraft:scaffolding"
+    },
+    "C": {
+      "item": "minecraft:piston"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "ACA",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:bridge_builder"
+  }
+}

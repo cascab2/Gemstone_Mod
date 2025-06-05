@@ -3,6 +3,7 @@ package com.caleb.gemstonemod.block;
 import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.block.custom.KohlrabiCropBlock;
 import com.caleb.gemstonemod.item.ModItems;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

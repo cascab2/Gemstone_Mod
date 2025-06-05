@@ -144,6 +144,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BRIDGE_BUILDER = ITEMS.register("bridge_builder",
+            () -> new BridgeBuilderItem(new Item.Properties().component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
