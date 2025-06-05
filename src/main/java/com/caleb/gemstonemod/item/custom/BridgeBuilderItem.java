@@ -17,20 +17,23 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BridgeBuilderItem extends CompassItem {
+public class BridgeBuilderItem extends Item {
 
     public BridgeBuilderItem(Properties pProperties) {
         super(pProperties);
     }
 
+    private List<BlockPos> blocksToPlace = new ArrayList<BlockPos>();
 
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
         Player player = pContext.getPlayer();
         InteractionHand pUsedHand = pContext.getHand();
         Level pLevel = pContext.getLevel();
+        ItemStack itemStack = pContext.getItemInHand();
         if (player.getMainHandItem().getItem() != null && player.getOffhandItem().getItem() != null) {
             Item mhi = player.getMainHandItem().getItem();
             Item ohi = player.getOffhandItem().getItem();
@@ -51,90 +54,100 @@ public class BridgeBuilderItem extends CompassItem {
             if (mhi.equals(ModItems.BRIDGE_BUILDER.get())) {
                 if (ohi.equals(Blocks.COBBLESTONE.asItem())) {
                     if (direction.equals("North")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.north(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
                                 player.getOffhandItem().setCount(player.getOffhandItem().getCount() - 1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
                     if (direction.equals("South")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.south(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
                                 player.getOffhandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);;
                             }
                         }
                     }
                     if (direction.equals("East")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.east(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
                                 player.getOffhandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
                     if (direction.equals("West")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.west(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
                                 player.getOffhandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
+                    itemStack.set(ModDataComponentTypes.OXIDIZATION.get(), 1);
                     return InteractionResult.sidedSuccess(pLevel.isClientSide);
                 } else {
-                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
+                    return InteractionResult.FAIL;
                 }
             } else {
                 if (mhi.equals(Blocks.COBBLESTONE.asItem())) {
                     if (direction.equals("North")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.north(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
                                 player.getMainHandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
                     if (direction.equals("South")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.south(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
                                 player.getMainHandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
                     if (direction.equals("East")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.east(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
                                 player.getMainHandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
                     if (direction.equals("West")) {
-                        for (int i = 0; i < 30; i++) {
+                        for (int i = 0; i < 16; i++) {
                             pos = pos.west(1);
                             if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
                                 player.getMainHandItem().shrink(1);
-                                pLevel.setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 0);
+                                blocksToPlace.add(pos);
                             }
                         }
                     }
+                    itemStack.set(ModDataComponentTypes.OXIDIZATION.get(), 1);
                     return InteractionResult.sidedSuccess(pLevel.isClientSide);
                 } else {
-                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
+                    return InteractionResult.FAIL;
                 }
             }
         } else {
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            return InteractionResult.FAIL;
         }
+    }
+
+    public List<BlockPos> getBlocksToPlace() {
+        return blocksToPlace;
+    }
+
+    public void resetBlocksToPlace() {
+        blocksToPlace = new ArrayList<BlockPos>();
     }
 }

@@ -6,6 +6,7 @@ import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantments;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
+import com.caleb.gemstonemod.item.custom.BridgeBuilderItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -15,6 +16,8 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -34,6 +37,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
@@ -47,6 +51,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.w3c.dom.Attr;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = GemstoneMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -391,6 +396,19 @@ public class ModEvents {
         if (event.getState().getBlock().equals(Blocks.SCULK_CATALYST)) {
             event.setCanceled(true);
             event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 0);
+        }
+    }
+    @SubscribeEvent
+    public static void bridgeBuilder(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.BRIDGE_BUILDER.get()) && !event.getEntity().level().isClientSide) {
+            if (event.getEntity().getMainHandItem().get(ModDataComponentTypes.OXIDIZATION.get()) != null) {
+                for (BlockPos pos : ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace()) {
+                    event.getEntity().level().setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 2);
+                }
+                ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).resetBlocksToPlace();
+                event.getEntity().getMainHandItem().set(ModDataComponentTypes.OXIDIZATION.get(), null);
+                event.getEntity().level().playSound((Player) event.getEntity(), event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ(), SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            }
         }
     }
 }
