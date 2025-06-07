@@ -22,6 +22,9 @@ public class ModDataComponentTypes {
     public static final RegistryObject<DataComponentType<Integer>> OXIDIZATION = register("oxidization",
             builder -> builder.persistent(Codec.INT));
 
+    public static final RegistryObject<DataComponentType<Integer>> COOLDOWN = register("cooldown",
+            builder -> builder.persistent(Codec.INT));
+
 
     private static <T>RegistryObject<DataComponentType<T>> register(String name, UnaryOperator<DataComponentType.Builder<T>> builderOperator) {
         return DATA_COMPONENT_TYPES.register(name, () -> builderOperator.apply(DataComponentType.builder()).build());

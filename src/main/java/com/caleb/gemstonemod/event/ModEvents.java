@@ -398,16 +398,23 @@ public class ModEvents {
             event.getLevel().setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 0);
         }
     }
+    public static int pTicks = 0;
     @SubscribeEvent
     public static void bridgeBuilder(LivingEvent.LivingTickEvent event) {
         if (event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.BRIDGE_BUILDER.get()) && !event.getEntity().level().isClientSide) {
-            if (event.getEntity().getMainHandItem().get(ModDataComponentTypes.OXIDIZATION.get()) != null) {
-                for (BlockPos pos : ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace()) {
+            if (event.getEntity().getMainHandItem().get(ModDataComponentTypes.OXIDIZATION.get()) != null && event.getEntity() instanceof Player) {
+                if (pTicks < ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace().size()) {
+                    BlockPos pos = ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace().get(pTicks);
                     event.getEntity().level().setBlock(pos, Blocks.COBBLESTONE.defaultBlockState(), 2);
+                    ((Player) event.getEntity()).getCooldowns().addCooldown(ModItems.BRIDGE_BUILDER.get(), 400);
+                    event.getEntity().level().playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS);
+                    pTicks++;
                 }
-                ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).resetBlocksToPlace();
-                event.getEntity().getMainHandItem().set(ModDataComponentTypes.OXIDIZATION.get(), null);
-                event.getEntity().level().playSound((Player) event.getEntity(), event.getEntity().getBlockX(), event.getEntity().getBlockY(), event.getEntity().getBlockZ(), SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+                if (pTicks > ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace().size() - 1) {
+                    ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).resetBlocksToPlace();
+                    event.getEntity().getMainHandItem().set(ModDataComponentTypes.OXIDIZATION.get(), null);
+                    pTicks = 0;
+                }
             }
         }
     }

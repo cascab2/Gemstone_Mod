@@ -56,41 +56,43 @@ public class BridgeBuilderItem extends Item {
                     if (direction.equals("North")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.north(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
+                            if ((pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) || pLevel.getBlockState(pos).getBlock().equals(Blocks.WATER) || pLevel.getBlockState(pos).getBlock().equals(Blocks.LAVA)) && player.getOffhandItem().getCount() > 0) {
                                 player.getOffhandItem().setCount(player.getOffhandItem().getCount() - 1);
                                 blocksToPlace.add(pos);
+                            } else {
+                                break;
                             }
                         }
                     }
                     if (direction.equals("South")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.south(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
+                            if ((pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) || pLevel.getBlockState(pos).getBlock().equals(Blocks.WATER) || pLevel.getBlockState(pos).getBlock().equals(Blocks.LAVA)) && player.getOffhandItem().getCount() > 0) {
                                 player.getOffhandItem().shrink(1);
                                 blocksToPlace.add(pos);;
+                            } else {
+                                break;
                             }
                         }
                     }
                     if (direction.equals("East")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.east(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
-                                player.getOffhandItem().shrink(1);
-                                blocksToPlace.add(pos);
-                            }
+                            if (f(player, pLevel, pos)) break;
                         }
                     }
                     if (direction.equals("West")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.west(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getOffhandItem().getCount() > 0) {
-                                player.getOffhandItem().shrink(1);
-                                blocksToPlace.add(pos);
-                            }
+                            if (f(player, pLevel, pos)) break;
                         }
                     }
-                    itemStack.set(ModDataComponentTypes.OXIDIZATION.get(), 1);
-                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
+                    if (blocksToPlace.isEmpty()) {
+                        return InteractionResult.FAIL;
+                    } else {
+                        itemStack.set(ModDataComponentTypes.OXIDIZATION.get(), 1);
+                        return InteractionResult.sidedSuccess(pLevel.isClientSide);
+                    }
                 } else {
                     return InteractionResult.FAIL;
                 }
@@ -99,41 +101,33 @@ public class BridgeBuilderItem extends Item {
                     if (direction.equals("North")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.north(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
-                                player.getMainHandItem().shrink(1);
-                                blocksToPlace.add(pos);
-                            }
+                            if (bridgeBlock(player, pLevel, pos)) break;
                         }
                     }
                     if (direction.equals("South")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.south(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
-                                player.getMainHandItem().shrink(1);
-                                blocksToPlace.add(pos);
-                            }
+                            if (bridgeBlock(player, pLevel, pos)) break;
                         }
                     }
                     if (direction.equals("East")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.east(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
-                                player.getMainHandItem().shrink(1);
-                                blocksToPlace.add(pos);
-                            }
+                            if (bridgeBlock(player, pLevel, pos)) break;
                         }
                     }
                     if (direction.equals("West")) {
                         for (int i = 0; i < 16; i++) {
                             pos = pos.west(1);
-                            if (pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) && player.getMainHandItem().getCount() > 0) {
-                                player.getMainHandItem().shrink(1);
-                                blocksToPlace.add(pos);
-                            }
+                            if (bridgeBlock(player, pLevel, pos)) break;
                         }
                     }
-                    itemStack.set(ModDataComponentTypes.OXIDIZATION.get(), 1);
-                    return InteractionResult.sidedSuccess(pLevel.isClientSide);
+                    if (blocksToPlace.isEmpty()) {
+                        return InteractionResult.FAIL;
+                    } else {
+                        itemStack.set(ModDataComponentTypes.OXIDIZATION.get(), 1);
+                        return InteractionResult.sidedSuccess(pLevel.isClientSide);
+                    }
                 } else {
                     return InteractionResult.FAIL;
                 }
@@ -141,6 +135,26 @@ public class BridgeBuilderItem extends Item {
         } else {
             return InteractionResult.FAIL;
         }
+    }
+
+    public boolean f(Player player, Level pLevel, BlockPos pos) {
+        if ((pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) || pLevel.getBlockState(pos).getBlock().equals(Blocks.WATER) || pLevel.getBlockState(pos).getBlock().equals(Blocks.LAVA)) && player.getOffhandItem().getCount() > 0) {
+            player.getOffhandItem().shrink(1);
+            blocksToPlace.add(pos);
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean bridgeBlock(Player player, Level pLevel, BlockPos pos) {
+        if ((pLevel.getBlockState(pos).getBlock().equals(Blocks.AIR) || pLevel.getBlockState(pos).getBlock().equals(Blocks.WATER) || pLevel.getBlockState(pos).getBlock().equals(Blocks.LAVA)) && player.getMainHandItem().getCount() > 0) {
+            player.getMainHandItem().shrink(1);
+            blocksToPlace.add(pos);
+        } else {
+            return true;
+        }
+        return false;
     }
 
     public List<BlockPos> getBlocksToPlace() {
