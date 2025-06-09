@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:ender_pearl"
+      "item": "gemstonemod:kohlrabi"
     },
     "B": {
       "item": "gemstonemod:triceratops_bone"
@@ -19,6 +19,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "gemstonemod:pearl_on_a_stick"
+    "id": "gemstonemod:kohlrabi_on_a_stick"
   }
 }

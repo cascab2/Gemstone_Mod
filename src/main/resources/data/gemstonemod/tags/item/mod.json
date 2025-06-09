@@ -66,6 +66,7 @@
     "gemstonemod:bridge_builder",
     "gemstonemod:gemstone_upgrade_template",
     "gemstonemod:explosion_singularity",
-    "gemstonemod:teleportation_singularity"
+    "gemstonemod:teleportation_singularity",
+    "gemstonemod:kohlrabi_on_a_stick"
   ]
 }

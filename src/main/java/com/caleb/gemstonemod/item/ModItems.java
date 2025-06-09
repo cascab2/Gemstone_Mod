@@ -150,6 +150,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> TELEPORTATION_SINGULARITY = ITEMS.register("teleportation_singularity",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> KOHLRABI_ON_A_STICK = ITEMS.register("kohlrabi_on_a_stick",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
