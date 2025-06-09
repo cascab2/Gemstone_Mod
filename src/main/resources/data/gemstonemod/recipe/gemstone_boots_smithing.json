@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "gemstonemod:gemstone_essence"
+  },
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:gemstone_boots"
+  },
+  "template": {
+    "item": "gemstonemod:gemstone_upgrade_template"
+  }
+}

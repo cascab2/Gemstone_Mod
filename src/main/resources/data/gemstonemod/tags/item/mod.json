@@ -63,6 +63,9 @@
     "gemstonemod:oxidized_leggings",
     "gemstonemod:oxidized_boots",
     "gemstonemod:overworld_zenith",
-    "gemstonemod:bridge_builder"
+    "gemstonemod:bridge_builder",
+    "gemstonemod:gemstone_upgrade_template",
+    "gemstonemod:explosion_singularity",
+    "gemstonemod:teleportation_singularity"
   ]
 }

@@ -1,0 +1,17 @@
+
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "gemstonemod:gemstone_essence"
+  },
+  "base": {
+    "item": "minecraft:netherite_leggings"
+  },
+  "result": {
+    "count": 1,
+    "id": "gemstonemod:gemstone_leggings"
+  },
+  "template": {
+    "item": "gemstonemod:gemstone_upgrade_template"
+  }
+}

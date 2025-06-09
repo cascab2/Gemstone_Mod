@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gemstonemod:item/warden_heart"
+    "layer0": "gemstonemod:item/teleportation_singularity"
   }
 }

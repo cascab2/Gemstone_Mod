@@ -22,7 +22,7 @@ public class ModItemProperties {
                 (itemStack, clientLevel, livingEntity, i) -> itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null ? 1f : 0f);
         ItemProperties.register(ModItems.GEMSTONE_LOCATOR.get(), ResourceLocation.fromNamespaceAndPath(GemstoneMod.MOD_ID, "angled"),
                 (itemStack, clientLevel, livingEntity, i) -> {
-                    if (itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null) {
+                    if (itemStack.get(ModDataComponentTypes.COORDINATES.get()) != null && livingEntity != null) {
                         BlockPos targetPos = itemStack.get(ModDataComponentTypes.COORDINATES.get());
                         Vec3 toTarget = new Vec3(
                                 targetPos.getX() + 0.5 - livingEntity.getX(),

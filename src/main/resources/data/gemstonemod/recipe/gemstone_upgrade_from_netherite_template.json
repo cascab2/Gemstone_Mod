@@ -6,11 +6,11 @@
       "item": "gemstonemod:gemstone_essence"
     },
     {
-      "item": "minecraft:netherite_leggings"
+      "item": "minecraft:netherite_upgrade_smithing_template"
     }
   ],
   "result": {
     "count": 1,
-    "id": "gemstonemod:gemstone_leggings"
+    "id": "gemstonemod:gemstone_upgrade_template"
   }
 }

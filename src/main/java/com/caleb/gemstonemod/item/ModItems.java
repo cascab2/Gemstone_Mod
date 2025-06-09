@@ -142,10 +142,14 @@ public class ModItems {
             () -> new GemstoneLocatorItem(new Item.Properties()));
     public static final RegistryObject<Item> OVERWORLD_ZENITH = ITEMS.register("overworld_zenith",
             () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> WARDEN_HEART = ITEMS.register("warden_heart",
-            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BRIDGE_BUILDER = ITEMS.register("bridge_builder",
             () -> new BridgeBuilderItem(new Item.Properties().component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+    public static final RegistryObject<Item> GEMSTONE_UPGRADE_TEMPLATE = ITEMS.register("gemstone_upgrade_template",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> EXPLOSION_SINGULARITY = ITEMS.register("explosion_singularity",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TELEPORTATION_SINGULARITY = ITEMS.register("teleportation_singularity",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

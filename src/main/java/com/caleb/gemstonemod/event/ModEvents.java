@@ -52,6 +52,7 @@ import org.w3c.dom.Attr;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = GemstoneMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -200,33 +201,35 @@ public class ModEvents {
     }
     @SubscribeEvent
     public static void wings(LivingEvent.LivingTickEvent event) {
-        if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.GEMSTONE_WINGS.get())) {
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 1, false, false));
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
-        }
-        if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 2) {
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 2, false, false));
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 2, false, false));
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 1, false, false));
-        }
-        if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 0.5) {
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 0, false, false));
-            if (event.getEntity().getEffect(MobEffects.NIGHT_VISION) != null) {
-                if (event.getEntity().getEffect(MobEffects.NIGHT_VISION).getDuration() <= 201) {
+        if (event.getEntity() != null) {
+            if (event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.GEMSTONE_WINGS.get())) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20, 1, false, false));
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 1, false, false));
+            }
+            if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 2) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 20, 2, false, false));
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20, 2, false, false));
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.JUMP, 20, 1, false, false));
+            }
+            if (event.getEntity().getAttribute(Attributes.SCALE).getBaseValue() == 0.5) {
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 20, 0, false, false));
+                if (event.getEntity().getEffect(MobEffects.NIGHT_VISION) != null) {
+                    if (event.getEntity().getEffect(MobEffects.NIGHT_VISION).getDuration() <= 201) {
+                        event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false));
+                    }
+                } else {
                     event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false));
                 }
-            } else {
-                event.getEntity().addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, false, false));
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false));
             }
-            event.getEntity().addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, 0, false, false));
-        }
-        if (!event.getEntity().getOffhandItem().getItem().equals(ModItems.SCALE_SINGULARITY.get())) {
-            event.getEntity().getAttribute(Attributes.SCALE).setBaseValue(1);
-        }
-        Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
-        Enchantment enchantment = enchantmentRegistry.get(ModEnchantments.ATTACK_SPEED);
-        if (enchantment == null && event.getEntity().getAttribute(Attributes.ATTACK_SPEED) != null) {
-            event.getEntity().getAttribute(Attributes.ATTACK_SPEED).setBaseValue(4);
+            if (!event.getEntity().getOffhandItem().getItem().equals(ModItems.SCALE_SINGULARITY.get())) {
+                event.getEntity().getAttribute(Attributes.SCALE).setBaseValue(1);
+            }
+            Registry<Enchantment> enchantmentRegistry = event.getEntity().level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+            Enchantment enchantment = enchantmentRegistry.get(ModEnchantments.ATTACK_SPEED);
+            if (enchantment == null && event.getEntity().getAttribute(Attributes.ATTACK_SPEED) != null) {
+                event.getEntity().getAttribute(Attributes.ATTACK_SPEED).setBaseValue(4);
+            }
         }
     }
     @SubscribeEvent
@@ -401,7 +404,7 @@ public class ModEvents {
     public static int pTicks = 0;
     @SubscribeEvent
     public static void bridgeBuilder(LivingEvent.LivingTickEvent event) {
-        if (event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.BRIDGE_BUILDER.get()) && !event.getEntity().level().isClientSide) {
+        if (event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(ModItems.BRIDGE_BUILDER.get()) && !event.getEntity().level().isClientSide && event.getEntity() != null) {
             if (event.getEntity().getMainHandItem().get(ModDataComponentTypes.OXIDIZATION.get()) != null && event.getEntity() instanceof Player) {
                 if (pTicks < ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace().size()) {
                     BlockPos pos = ((BridgeBuilderItem) event.getEntity().getMainHandItem().getItem()).getBlocksToPlace().get(pTicks);
@@ -416,6 +419,42 @@ public class ModEvents {
                     pTicks = 0;
                 }
             }
+        }
+    }
+    @SubscribeEvent
+    public static void jumpExplode(LivingEvent.LivingJumpEvent event) {
+        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.CHEST).getItem().equals(ModItems.GEMSTONE_CHESTPLATE.get()) && event.getEntity().getOffhandItem().getItem().equals(ModItems.EXPLOSION_SINGULARITY.get())) {
+            if (!((ServerPlayer) event.getEntity()).getCooldowns().isOnCooldown(ModItems.EXPLOSION_SINGULARITY.get()) && event.getEntity().isCrouching()) {
+                event.getEntity().level().explode(event.getEntity(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), 6, Level.ExplosionInteraction.TRIGGER);
+                ((ServerPlayer) event.getEntity()).getCooldowns().addCooldown(ModItems.EXPLOSION_SINGULARITY.get(), 500);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void jumpTeleport(LivingEvent.LivingJumpEvent event) {
+        if (event.getEntity() instanceof ServerPlayer && event.getEntity().getItemBySlot(EquipmentSlot.HEAD).getItem().equals(ModItems.GEMSTONE_HELMET.get()) && event.getEntity().getOffhandItem().getItem().equals(ModItems.TELEPORTATION_SINGULARITY.get()) && event.getEntity() != null) {
+            if (!(((ServerPlayer) event.getEntity()).getCooldowns().isOnCooldown(ModItems.TELEPORTATION_SINGULARITY.get())) && event.getEntity().isCrouching()) {
+                if (Math.abs(Objects.requireNonNull(Objects.requireNonNull(((ServerPlayer) event.getEntity())).getRespawnPosition()).getX() - event.getEntity().getX()) <= 10 &&
+                        (Math.abs(Objects.requireNonNull(((ServerPlayer) event.getEntity())).getRespawnPosition().getY() - event.getEntity().getY())) <= 10 &&
+                        (Math.abs(Objects.requireNonNull(((ServerPlayer) event.getEntity())).getRespawnPosition().getZ() - event.getEntity().getZ())) <= 10) {
+                    if (event.getEntity().getOffhandItem().get(ModDataComponentTypes.COORDINATES.get()) != null) {
+                        event.getEntity().teleportTo(Objects.requireNonNull(event.getEntity().getOffhandItem().get(ModDataComponentTypes.COORDINATES.get())).getX(), Objects.requireNonNull(event.getEntity().getOffhandItem().get(ModDataComponentTypes.COORDINATES.get())).getY() + 1, Objects.requireNonNull(event.getEntity().getOffhandItem().get(ModDataComponentTypes.COORDINATES.get())).getZ());
+                        ((ServerPlayer) event.getEntity()).getCooldowns().addCooldown(ModItems.TELEPORTATION_SINGULARITY.get(), 1200);
+                        event.getEntity().level().playSound(null, event.getEntity().getOnPos(), SoundEvents.PLAYER_TELEPORT, SoundSource.AMBIENT);
+                    }
+                } else {
+                    event.getEntity().getOffhandItem().set(ModDataComponentTypes.COORDINATES.get(), event.getEntity().getOnPos());
+                    ((ServerPlayer) event.getEntity()).teleportTo(((ServerPlayer) event.getEntity()).getRespawnPosition().getX(), ((ServerPlayer) event.getEntity()).getRespawnPosition().getY() + 1, ((ServerPlayer) event.getEntity()).getRespawnPosition().getZ());
+                    ((ServerPlayer) event.getEntity()).getCooldowns().addCooldown(ModItems.TELEPORTATION_SINGULARITY.get(), 1200);
+                    event.getEntity().level().playSound(null, event.getEntity().getOnPos(), SoundEvents.PLAYER_TELEPORT, SoundSource.AMBIENT);
+                }
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void changeDimensions(PlayerEvent.PlayerChangedDimensionEvent event) {
+        for (ItemStack stack : event.getEntity().getInventory().items) {
+            stack.set(ModDataComponentTypes.COORDINATES.get(), null);
         }
     }
 }
