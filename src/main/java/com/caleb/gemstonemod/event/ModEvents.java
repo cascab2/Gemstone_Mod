@@ -29,9 +29,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Phantom;
-import net.minecraft.world.entity.monster.Stray;
-import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.breeze.Breeze;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
@@ -549,5 +548,14 @@ public class ModEvents {
         stray.startRiding(phantom5);
         pLevel.addFreshEntity(stray);
         stray.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1));
+        Breeze breeze = new Breeze(EntityType.BREEZE, pLevel);
+        breeze.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        pLevel.addFreshEntity(breeze);
+        breeze.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0));
+        Ghast ghast = new Ghast(EntityType.GHAST, pLevel);
+        ghast.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        ghast.startRiding(breeze);
+        ghast.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600, 3));
+        ghast.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0));
     }
 }
