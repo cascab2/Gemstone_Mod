@@ -478,12 +478,6 @@ public class ModEvents {
             }
         }
     }
-    @SubscribeEvent
-    public static void dragonDeath(LivingHurtEvent event) {
-        if (event.getEntity() instanceof EnderDragon && event.getEntity().getHealth() <= 1.0f && stage == 2) {
-            stage = -1;
-        }
-    }
     public static void summonDragonWave1(Level pLevel) {
         BlockPos pPos = new BlockPos(0, 80, 0);
         while (pLevel.getBlockState(pPos).getBlock() != Blocks.BEDROCK) {
