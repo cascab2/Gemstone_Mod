@@ -4,57 +4,56 @@ import com.caleb.gemstonemod.GemstoneMod;
 import com.caleb.gemstonemod.block.ModBlocks;
 import com.caleb.gemstonemod.component.ModDataComponentTypes;
 import com.caleb.gemstonemod.enchantment.ModEnchantments;
+import com.caleb.gemstonemod.entity.ModEntities;
+import com.caleb.gemstonemod.entity.custom.TriceratopsEntity;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.BridgeBuilderItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.EquipmentTable;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.monster.Stray;
+import net.minecraft.world.entity.monster.Vindicator;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.w3c.dom.Attr;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Mod.EventBusSubscriber(modid = GemstoneMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
@@ -457,5 +456,98 @@ public class ModEvents {
         for (ItemStack stack : event.getEntity().getInventory().items) {
             stack.set(ModDataComponentTypes.COORDINATES.get(), null);
         }
+    }
+    static int stage = -1;
+    @SubscribeEvent
+    public static void dragonStage(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity() instanceof EnderDragon && event.getEntity() != null) {
+            if (stage == -1) {
+                event.getEntity().heal(500f);
+                stage = 0;
+            }
+            if (event.getEntity().getHealth() <= 200.0f && stage == 0) {
+                event.getEntity().heal(500.0f);
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 4));
+                stage = 1;
+                summonDragonWave1(event.getEntity().level());
+            }
+            if (event.getEntity().getHealth() <= 100.0f && stage == 1) {
+                event.getEntity().heal(500f);
+                event.getEntity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 4));
+                stage = 2;
+                summonDragonWave2(event.getEntity().level());
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void dragonDeath(LivingHurtEvent event) {
+        if (event.getEntity() instanceof EnderDragon && event.getEntity().getHealth() <= 1.0f && stage == 2) {
+            stage = -1;
+        }
+    }
+    public static void summonDragonWave1(Level pLevel) {
+        BlockPos pPos = new BlockPos(0, 80, 0);
+        while (pLevel.getBlockState(pPos).getBlock() != Blocks.BEDROCK) {
+            pPos = pPos.below(1);
+        }
+        pPos = pPos.above(1);
+        wave1Mob(pLevel, pPos);
+        wave1Mob(pLevel, pPos);
+        wave1Mob(pLevel, pPos);
+        wave1Mob(pLevel, pPos);
+        wave1Mob(pLevel, pPos);
+    }
+    public static void summonDragonWave2(Level pLevel) {
+        BlockPos pPos = new BlockPos(0, 80, 0);
+        while (pLevel.getBlockState(pPos).getBlock() != Blocks.BEDROCK) {
+            pPos = pPos.below(1);
+        }
+        pPos = pPos.above(1);
+        wave2Mob(pLevel, pPos);
+        wave2Mob(pLevel, pPos);
+        wave2Mob(pLevel, pPos);
+        wave2Mob(pLevel, pPos);
+        wave2Mob(pLevel, pPos);
+        wave2Mob(pLevel, pPos);
+        wave2Mob(pLevel, pPos);
+    }
+    public static void wave1Mob(Level pLevel, BlockPos pPos) {
+        TriceratopsEntity triceratops5 = new TriceratopsEntity(ModEntities.TRICERATOPS.get(), pLevel);
+        triceratops5.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        pLevel.addFreshEntity(triceratops5);
+        Vindicator vindicator5 = new Vindicator(EntityType.VINDICATOR, pLevel);
+        vindicator5.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        vindicator5.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.DIAMOND_AXE));
+        vindicator5.startRiding(triceratops5);
+        pLevel.addFreshEntity(vindicator5);
+        Phantom phantom5 = new Phantom(EntityType.PHANTOM, pLevel);
+        phantom5.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        pLevel.addFreshEntity(phantom5);
+        Stray stray = new Stray(EntityType.STRAY, pLevel);
+        stray.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        stray.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.BOW));
+        stray.startRiding(phantom5);
+        pLevel.addFreshEntity(stray);
+        stray.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 0));
+    }
+    public static void wave2Mob(Level pLevel, BlockPos pPos) {
+        TriceratopsEntity triceratops5 = new TriceratopsEntity(ModEntities.TRICERATOPS.get(), pLevel);
+        triceratops5.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        pLevel.addFreshEntity(triceratops5);
+        Vindicator vindicator5 = new Vindicator(EntityType.VINDICATOR, pLevel);
+        vindicator5.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        vindicator5.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.NETHERITE_AXE));
+        vindicator5.startRiding(triceratops5);
+        pLevel.addFreshEntity(vindicator5);
+        vindicator5.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 0));
+        Phantom phantom5 = new Phantom(EntityType.PHANTOM, pLevel);
+        phantom5.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        pLevel.addFreshEntity(phantom5);
+        Stray stray = new Stray(EntityType.STRAY, pLevel);
+        stray.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
+        stray.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.BOW));
+        stray.startRiding(phantom5);
+        pLevel.addFreshEntity(stray);
+        stray.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1));
     }
 }
