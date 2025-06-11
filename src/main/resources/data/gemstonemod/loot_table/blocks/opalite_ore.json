@@ -40,7 +40,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "gemstonemod:opalite"
+              "name": "gemstonemod:raw_opalite"
             }
           ]
         }
