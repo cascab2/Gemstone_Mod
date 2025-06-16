@@ -69,11 +69,13 @@
   "block.gemstonemod.rain": "Rain",
   "block.gemstonemod.cloud": "Cloud",
   "block.gemstonemod.kohlrabi_crop": "Kohlrabi Crop",
+  "block.gemstonemod.cool_block": "Very Cool Block",
 
   "enchantment.gemstonemod.lightning_striker": "Lightning Striker",
   "enchantment.gemstonemod.healthy": "Healthy",
   "enchantment.gemstonemod.attack_speed": "Attack Speed",
   "enchantment.gemstonemod.archaeology": "Archaeology",
 
-  "entity.gemstonemod.triceratops": "Triceratops"
+  "entity.gemstonemod.triceratops": "Triceratops",
+  "entity.minecraft.villager.gemstonemod.end_villager": "Dihlliger"
 }

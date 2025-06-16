@@ -8,6 +8,7 @@ import com.caleb.gemstonemod.entity.client.TriceratopsRenderer;
 import com.caleb.gemstonemod.item.ModItems;
 import com.caleb.gemstonemod.loot.ModLootModifiers;
 import com.caleb.gemstonemod.util.ModItemProperties;
+import com.caleb.gemstonemod.villager.ModVillagers;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -58,6 +59,8 @@ public class GemstoneMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         ModLootModifiers.register(modEventBus);
+
+        ModVillagers.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -97,6 +100,7 @@ public class GemstoneMod {
             event.accept(ModBlocks.MOON);
             event.accept(ModBlocks.RAIN);
             event.accept(ModBlocks.CLOUD);
+            event.accept(ModBlocks.COOL_BLOCK);
         }
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.AMBERITE_ORE);

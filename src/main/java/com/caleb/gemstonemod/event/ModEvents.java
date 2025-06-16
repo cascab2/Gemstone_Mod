@@ -11,8 +11,10 @@ import com.caleb.gemstonemod.item.custom.AmberitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.BridgeBuilderItem;
 import com.caleb.gemstonemod.item.custom.OpalitePickaxeItem;
 import com.caleb.gemstonemod.item.custom.SaphiriteAxeItem;
+import com.caleb.gemstonemod.villager.ModVillagers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -31,6 +33,7 @@ import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.breeze.Breeze;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.windcharge.WindCharge;
 import net.minecraft.world.item.ItemStack;
@@ -39,16 +42,23 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.VillagerTradingManager;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -462,6 +472,8 @@ public class ModEvents {
         if (event.getEntity() instanceof EnderDragon && event.getEntity() != null) {
             if (stage == -1) {
                 event.getEntity().heal(500f);
+            }
+            if (stage == -1 && event.getEntity().getHealth() >= 300f) {
                 stage = 0;
             }
             if (event.getEntity().getHealth() <= 200.0f && stage == 0) {
@@ -479,16 +491,44 @@ public class ModEvents {
         }
     }
     public static void summonDragonWave1(Level pLevel) {
-        BlockPos pPos = new BlockPos(0, 80, 0);
-        while (pLevel.getBlockState(pPos).getBlock() != Blocks.BEDROCK) {
-            pPos = pPos.below(1);
+        BlockPos pPos1 = new BlockPos(0, 80, 0);
+        while (pLevel.getBlockState(pPos1).getBlock() != Blocks.BEDROCK) {
+            pPos1 = pPos1.below(1);
         }
-        pPos = pPos.above(1);
-        wave1Mob(pLevel, pPos);
-        wave1Mob(pLevel, pPos);
-        wave1Mob(pLevel, pPos);
-        wave1Mob(pLevel, pPos);
-        wave1Mob(pLevel, pPos);
+        pPos1 = pPos1.above(1);
+        wave1Mob(pLevel, pPos1);
+        wave1Mob(pLevel, pPos1);
+        wave1Mob(pLevel, pPos1);
+        wave1Mob(pLevel, pPos1);
+        wave1Mob(pLevel, pPos1);
+        BlockPos pPos2 = new BlockPos(30, 80, 0);
+        while (pLevel.getBlockState(pPos2).getBlock() != Blocks.END_STONE) {
+            pPos2 = pPos2.below(1);
+        }
+        pPos2 = pPos2.above(1);
+        wave1Mob(pLevel, pPos2);
+        wave1Mob(pLevel, pPos2);
+        BlockPos pPos3 = new BlockPos(-30, 80, 0);
+        while (pLevel.getBlockState(pPos3).getBlock() != Blocks.END_STONE) {
+            pPos3 = pPos3.below(1);
+        }
+        pPos3 = pPos3.above(1);
+        wave1Mob(pLevel, pPos3);
+        wave1Mob(pLevel, pPos3);
+        BlockPos pPos4 = new BlockPos(0, 80, 30);
+        while (pLevel.getBlockState(pPos4).getBlock() != Blocks.END_STONE) {
+            pPos4 = pPos4.below(1);
+        }
+        pPos4 = pPos4.above(1);
+        wave1Mob(pLevel, pPos4);
+        wave1Mob(pLevel, pPos4);
+        BlockPos pPos5 = new BlockPos(0, 80, -30);
+        while (pLevel.getBlockState(pPos5).getBlock() != Blocks.END_STONE) {
+            pPos5 = pPos5.below(1);
+        }
+        pPos5 = pPos5.above(1);
+        wave1Mob(pLevel, pPos5);
+        wave1Mob(pLevel, pPos5);
     }
     public static void summonDragonWave2(Level pLevel) {
         BlockPos pPos = new BlockPos(0, 80, 0);
@@ -503,6 +543,62 @@ public class ModEvents {
         wave2Mob(pLevel, pPos);
         wave2Mob(pLevel, pPos);
         wave2Mob(pLevel, pPos);
+        BlockPos pPos2 = new BlockPos(30, 80, 0);
+        while (pLevel.getBlockState(pPos2).getBlock() != Blocks.END_STONE) {
+            pPos2 = pPos2.below(1);
+        }
+        pPos2 = pPos2.above(1);
+        wave2Mob(pLevel, pPos2);
+        wave2Mob(pLevel, pPos2);
+        BlockPos pPos3 = new BlockPos(-30, 80, 0);
+        while (pLevel.getBlockState(pPos3).getBlock() != Blocks.END_STONE) {
+            pPos3 = pPos3.below(1);
+        }
+        pPos3 = pPos3.above(1);
+        wave2Mob(pLevel, pPos3);
+        wave2Mob(pLevel, pPos3);
+        BlockPos pPos4 = new BlockPos(0, 80, 30);
+        while (pLevel.getBlockState(pPos4).getBlock() != Blocks.END_STONE) {
+            pPos4 = pPos4.below(1);
+        }
+        pPos4 = pPos4.above(1);
+        wave2Mob(pLevel, pPos4);
+        wave2Mob(pLevel, pPos4);
+        BlockPos pPos5 = new BlockPos(0, 80, -30);
+        while (pLevel.getBlockState(pPos5).getBlock() != Blocks.END_STONE) {
+            pPos5 = pPos5.below(1);
+        }
+        pPos5 = pPos5.above(1);
+        wave2Mob(pLevel, pPos5);
+        wave2Mob(pLevel, pPos5);
+        BlockPos pPos6 = new BlockPos(20, 80, 20);
+        while (pLevel.getBlockState(pPos6).getBlock() != Blocks.END_STONE) {
+            pPos6 = pPos6.below(1);
+        }
+        pPos6 = pPos6.above(1);
+        wave2Mob(pLevel, pPos6);
+        wave2Mob(pLevel, pPos6);
+        BlockPos pPos7 = new BlockPos(-20, 80, -20);
+        while (pLevel.getBlockState(pPos7).getBlock() != Blocks.END_STONE) {
+            pPos7 = pPos7.below(1);
+        }
+        pPos7 = pPos7.above(1);
+        wave2Mob(pLevel, pPos7);
+        wave2Mob(pLevel, pPos7);
+        BlockPos pPos8 = new BlockPos(20, 80, -20);
+        while (pLevel.getBlockState(pPos8).getBlock() != Blocks.END_STONE) {
+            pPos8 = pPos8.below(1);
+        }
+        pPos8 = pPos8.above(1);
+        wave2Mob(pLevel, pPos8);
+        wave2Mob(pLevel, pPos8);
+        BlockPos pPos9 = new BlockPos(-20, 80, 20);
+        while (pLevel.getBlockState(pPos9).getBlock() != Blocks.END_STONE) {
+            pPos9 = pPos9.below(1);
+        }
+        pPos9 = pPos9.above(1);
+        wave2Mob(pLevel, pPos9);
+        wave2Mob(pLevel, pPos9);
     }
     public static void wave1Mob(Level pLevel, BlockPos pPos) {
         TriceratopsEntity triceratops5 = new TriceratopsEntity(ModEntities.TRICERATOPS.get(), pLevel);
@@ -546,10 +642,53 @@ public class ModEvents {
         breeze.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
         pLevel.addFreshEntity(breeze);
         breeze.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0));
-        Ghast ghast = new Ghast(EntityType.GHAST, pLevel);
-        ghast.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
-        ghast.startRiding(breeze);
-        ghast.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 600, 3));
-        ghast.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0));
+    }
+    @SubscribeEvent
+    public static void addCustomTrades(VillagerTradesEvent event) {
+        if (event.getType() == ModVillagers.END_VILLAGER.get()) {
+            var trades = event.getTrades();
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 6),
+                    new ItemStack(ModItems.GEMSTONE_LOCATOR.get(), 1), 6, 4, 0.05f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(ModItems.ROCK_SINGULARITY.get(), 1),
+                    new ItemStack(Items.EMERALD, 1), 16, 4, 0.05f));
+
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 32),
+                    new ItemStack(Items.WITHER_SKELETON_SKULL, 1), 6, 8, 0.05f));
+
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.AMETHYST_SHARD, 7),
+                    new ItemStack(Items.EMERALD, 1), 6, 8, 0.05f));
+
+            trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 18),
+                    new ItemStack(ModItems.GEMSTONE_UPGRADE_TEMPLATE.get(), 1), 6, 12, 0.05f));
+
+            trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 48),
+                    new ItemStack(Items.SCULK_SHRIEKER, 1), 6, 12, 0.05f));
+
+            trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 22),
+                    new ItemStack(ModItems.DIAMOND_APPLE.get(), 1), 8, 16, 0.05f));
+
+            ItemStack ominous = new ItemStack(Items.OMINOUS_BOTTLE, 1);
+            ominous.set(DataComponents.OMINOUS_BOTTLE_AMPLIFIER, 4);
+            trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 24),
+                    ominous, 8, 16, 0.05f));
+
+            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 52),
+                    new ItemStack(Blocks.END_PORTAL_FRAME, 1), 12, 16, 0.05f));
+
+            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 64),
+                    new ItemStack(Items.HEAVY_CORE, 1), 6, 16, 0.05f));
+        }
     }
 }

@@ -6,14 +6,14 @@
       "terms": [
         {
           "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:entities/creeper"
+          "loot_table_id": "minecraft:entities/enderman"
         },
         {
-          "chance": 0.9,
+          "chance": 0.125,
           "condition": "minecraft:random_chance"
         }
       ]
     }
   ],
-  "item": "gemstonemod:warden_heart"
+  "item": "gemstonemod:cool_block"
 }
