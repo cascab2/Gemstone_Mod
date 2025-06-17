@@ -30,6 +30,7 @@ public class PearlOnAStickItem extends FishingRodItem {
         if (pPlayer.fishing != null && !pLevel.isClientSide) {
             pLevel.playSound(null, new BlockPos(pPlayer.getBlockX(), pPlayer.getBlockY(), pPlayer.getBlockZ()), SoundEvents.PLAYER_TELEPORT, SoundSource.PLAYERS);
             pPlayer.teleportTo(pPlayer.fishing.getX(), pPlayer.fishing.getY(), pPlayer.fishing.getZ());
+            pPlayer.fallDistance = 0;
             pPlayer.fishing.kill();
             if (pHand.equals(InteractionHand.MAIN_HAND))
                 itemstack.hurtAndBreak(1, pPlayer, EquipmentSlot.MAINHAND);
